@@ -1,31 +1,52 @@
 {
-    "name": "Awesome Extension",
-    "version": "1.0.0",
-    "manifest_version": 3,
-    "action": {
-        "default_icon": {
-          "16": "assets/icon16.png",
-          "48": "assets/icon48.png",
-          "128": "assets/icon128.png"
-        },
-        "default_title": "Awesome Extension"
+  "name": "简单书签2",
+  "version": "2.0.0",
+  "manifest_version": 3,
+  "description": "无压的浏览器书签管理插件",
+  "author": "NMTuan",
+  "homepage_url": "https://github.com/NMTuan/ezBookmarks2",
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    },
+    "default_title": "简单书签2"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-scripts/main.js"]
+    }
+  ],
+  "permissions": ["tabs"],
+  "host_permissions": ["*://*/*"],
+  "commands": {
+    "create": {
+      "suggested_key": {
+        "default": "Alt+D",
+        "windows": "Alt+D",
+        "linux": "Alt+D",
+        "mac": "Alt+D"
       },
-    "icons": {
-        "16": "assets/icon16.png",
-        "48": "assets/icon48.png",
-        "128": "assets/icon128.png"
+      "description": "添加到书签"
     },
-    "background": {
-        "service_worker": "background.js"
-    },
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["content-scripts/main.js"]
-        }
-    ],
-    "permissions": [
-        "tabs"
-    ]
-
+    "search": {
+      "suggested_key": {
+        "default": "Alt+F",
+        "windows": "Alt+F",
+        "linux": "Alt+F",
+        "mac": "Alt+F"
+      },
+      "description": "检索书签"
+    }
+  }
 }

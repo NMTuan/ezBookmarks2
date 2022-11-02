@@ -1,12 +1,27 @@
 {
-  "name": "awesome-extension",
-  "version": "0.0.0",
+  "name": "ez_bookmarks",
+  "description": "无压的浏览器书签管理插件",
+  "keywords": [
+    "ezbookmark",
+    "svelte",
+    "cloudbase",
+    "vite",
+    "chrome",
+    "extension"
+  ],
+  "author": "NMTuan",
+  "license": "MIT",
+  "homepage": "https://github.com/NMTuan/ezBookmarks2",
+  "private": true,
+  "version": "2.0.0",
   "scripts": {
     "dev": "vite build --mode developmemnt",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "watch": "npm-watch"
   },
   "dependencies": {
+    "throttle-debounce": "^5.0.0",
     "vue": "^3.0.5"
   },
   "devDependencies": {
@@ -14,8 +29,18 @@
     "@unocss/transformer-compile-class": "^0.46.2",
     "@vitejs/plugin-vue": "^1.3.0",
     "@vue/compiler-sfc": "^3.0.5",
+    "npm-watch": "^0.11.0",
     "unocss": "^0.46.2",
     "vite": "^2.4.4",
     "vite-plugin-chrome-extension": "^0.0.7"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "css,js,json,vue,html",
+      "runOnChangeOnly": false
+    }
   }
 }
