@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-02 15:25:24
+ * @LastEditTime: 2022-11-02 17:23:58
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\vite.config.js
@@ -13,6 +13,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { chromeExtension } from "vite-plugin-chrome-extension";
 import transformerCompileClass from "@unocss/transformer-compile-class";
+import transformerDirectives from "@unocss/transformer-directives";
 
 import Unocss from "unocss/vite";
 
@@ -31,12 +32,12 @@ export default defineConfig({
   plugins: [
     vue(),
     Unocss({
-      /* options */
       transformers: [
         transformerCompileClass({
-          trigger: "ez",
-          classPrefix: "ez-"
-        })
+          // trigger: "ez",
+          // classPrefix: "ez-"
+        }),
+        transformerDirectives()
       ]
     }),
     chromeExtension()

@@ -27,6 +27,7 @@
   "devDependencies": {
     "@asigloo/prettier-config": "^0.2.0",
     "@unocss/transformer-compile-class": "^0.46.2",
+    "@unocss/transformer-directives": "^0.46.2",
     "@vitejs/plugin-vue": "^1.3.0",
     "@vue/compiler-sfc": "^3.0.5",
     "npm-watch": "^0.11.0",
