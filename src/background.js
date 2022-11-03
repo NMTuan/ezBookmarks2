@@ -2,11 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-02 16:30:59
+ * @LastEditTime: 2022-11-03 16:14:30
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\background.js
  */
+
+import api from "./api";
 
 // 点击扩展小图标
 chrome.action.onClicked.addListener(async tab => {
@@ -22,15 +24,27 @@ async function getCurrentTab() {
   return tab;
 }
 
+// 登录
+function login(payload) {
+  return api.auth.login(payload).then(res => {
+    console.log("[res]", res);
+    return res;
+  });
+}
+
 // 消息处理
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   switch (request.type) {
     case "POPUP_INIT":
       getCurrentTab().then(sendResponse);
-      return true;
+      break;
+    case "login":
+      login(request.payload).then(sendResponse);
+      break;
     default:
       break;
   }
+  return true;
 });
 
 // 按键处理

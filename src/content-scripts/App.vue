@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-02 17:25:15
+ * @LastEditTime: 2022-11-03 11:16:51
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\App.vue
@@ -49,9 +49,20 @@ onMounted(() => {
 defineExpose({ handleMessage })
 
 </script>
-<style>
+<style lang="scss">
 #ezBookmarks2 {
-  font-size: 16px;
-  @apply bg-red-200;
+  // @apply text-base;
+  @apply bg-neutral-700;
+
+  * {
+    @apply box-border;
+    @apply text-base font-normal not-italic;
+  }
+
+  input,
+  button {
+    @apply border-none;
+    @apply bg-transparent;
+  }
 }
 </style>

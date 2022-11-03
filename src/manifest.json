@@ -28,7 +28,7 @@
     }
   ],
   "permissions": ["tabs"],
-  "host_permissions": ["*://*/*"],
+  "host_permissions": ["http://*/*", "https://*/*"],
   "commands": {
     "create": {
       "suggested_key": {
