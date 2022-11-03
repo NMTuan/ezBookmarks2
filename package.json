@@ -3,8 +3,8 @@
   "description": "无压的浏览器书签管理插件",
   "keywords": [
     "ezbookmark",
-    "svelte",
-    "cloudbase",
+    "vue",
+    "directus",
     "vite",
     "chrome",
     "extension"
@@ -16,7 +16,8 @@
   "version": "2.0.0",
   "scripts": {
     "dev": "vite build --mode developmemnt",
-    "build": "vite build",
+    "build:dev": "vite build --mode developmemnt",
+    "build:prod": "vite build",
     "serve": "vite preview",
     "watch": "npm-watch"
   },
@@ -38,7 +39,7 @@
     "vite-plugin-chrome-extension": "^0.0.7"
   },
   "watch": {
-    "build": {
+    "build:dev": {
       "patterns": [
         "src"
       ],

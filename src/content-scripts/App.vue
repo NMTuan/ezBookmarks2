@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-03 16:28:37
+ * @LastEditTime: 2022-11-03 17:02:37
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\App.vue
@@ -22,6 +22,7 @@
 
 <script setup>
 import { ref, onMounted, reactive } from "vue";
+import log from '@/utils/log'
 import Login from './components/login.vue'
 
 const visible = ref(false);
@@ -30,7 +31,7 @@ const state = reactive({
 });
 
 const handleMessage = ({ type = '', action = '', payload = {} }) => {
-  console.log('[message]', type, action, payload);
+  log('[message]', type, action, payload);
   if (type === 'action') {
     visible.value = !visible.value
   }
@@ -42,7 +43,7 @@ onMounted(() => {
   // 让后台取当前窗口信息
   chrome.runtime.sendMessage({ type: "POPUP_INIT" }, async tab => {
     state.currentTab = await tab;
-    console.log(state.currentTab);
+    log(state.currentTab);
   });
 });
 
