@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-03 11:16:51
+ * @LastEditTime: 2022-11-03 16:28:37
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\App.vue
@@ -29,9 +29,9 @@ const state = reactive({
   currentTab: null
 });
 
-const handleMessage = (command) => {
-  console.log('[message]', command);
-  if (command === 'icon') {
+const handleMessage = ({ type = '', action = '', payload = {} }) => {
+  console.log('[message]', type, action, payload);
+  if (type === 'action') {
     visible.value = !visible.value
   }
 }
