@@ -1,29 +1,19 @@
-import { def } from "@vue/shared";
-
 /*
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-03 16:05:26
- * @LastEditTime: 2022-11-04 11:42:03
+ * @LastEditTime: 2022-11-04 15:33:06
  * @LastEditors: NMTuan
  * @Description: 异步处理
  * @FilePath: \ezBookmarks2\src\api\fetch.js
  */
-let access_token = "";
-
-chrome.storage.sync.get(["access_token"]).then(res => {
-  access_token = res.access_token || "";
-});
-
-chrome.storage.sync.onChanged.addListener(res => {
-  if (typeof res.access_token !== "undefined") {
-    access_token = res.access_token;
-  }
-});
+import api from "./index";
+import log from "@/utils/log";
+import storageData from "@/utils/storage";
 
 const defaultHeader = { "Content-Type": "application/json" };
 
-const _fetch = ({ path, method = "get", data = null, header = null }) => {
+const _fetch = ({ path, method = "get", data = null, headers = null }) => {
   const fetchPath = `${import.meta.env.VITE_HOST}/${path}`;
 
   const fetchParams = {};
@@ -33,20 +23,54 @@ const _fetch = ({ path, method = "get", data = null, header = null }) => {
     fetchParams.body = JSON.stringify(data);
   }
 
-  if (header) {
+  if (headers) {
     // 如果传参，则用传参
-    fetchParams.headers = Object.assign({}, defaultHeader, header);
-  } else if (access_token) {
+    fetchParams.headers = Object.assign({}, defaultHeader, headers);
+  } else if (storageData.access_token) {
     // 如果有 access_token 则用
     fetchParams.headers = Object.assign({}, defaultHeader, {
-      Authorization: `Bearer ${access_token}`
+      Authorization: `Bearer ${storageData.access_token}`
     });
   } else {
     // 否则用 default
     fetchParams.headers = Object.assign({}, defaultHeader);
   }
 
-  return fetch(fetchPath, fetchParams).then(res => res.json());
+  return fetch(fetchPath, fetchParams)
+    .then(res => res.json())
+    .then(res => {
+      log("[fetch:res]", res);
+      // 如果 token 过期，则需要刷新
+      if (res.errors && res.errors[0].extensions.code === "TOKEN_EXPIRED") {
+        // 刷新 token
+        return api.auth
+          .refresh({
+            refresh_token: storageData.refresh_token
+          })
+          .then(res => {
+            log("[fetch:refresh]", res);
+            if (res.errors) {
+              // 如果刷新 token 还报错，则清理记录的 token
+              chrome.storage.sync.set({
+                access_token: "",
+                refresh_token: "",
+                logged: false
+              });
+              return res;
+            } else {
+              // 记录新 token
+              chrome.storage.sync.set(res.data);
+              // 重新请求
+              fetchParams.headers = Object.assign({}, defaultHeader, {
+                Authorization: `Bearer ${res.data.access_token}`
+              });
+              return fetch(fetchPath, fetchParams);
+            }
+          });
+      } else {
+        return res;
+      }
+    });
 };
 
 const getData = params => _fetch(params);

@@ -11,8 +11,8 @@ import { getData, postData } from "./fetch";
 const api = {
   auth: {
     // 登录
-    login: data => postData({ path: "auth/login", data, header: {} }),
-    refresh: data => postData({ path: "auth/refresh", data, header: {} })
+    login: data => postData({ path: "auth/login", data, headers: {} }),
+    refresh: data => postData({ path: "auth/refresh", data, headers: {} })
   },
   users: {
     me: () => getData({ path: "users/me" })
