@@ -2,13 +2,17 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 16:45:21
- * @LastEditTime: 2022-11-03 15:04:46
+ * @LastEditTime: 2022-11-04 10:16:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\login.vue
 -->
 <template>
-    <div>
+    <Dialog>
+        <!-- <div class=":uno:
+    absolute inset-0
+    backdrop-blur-sm
+    "> -->
         login
         <BaseInput v-model="email" placeholder="Email" />
         <BaseInput v-model="password" type="password" placeholder="Password" />
@@ -16,15 +20,17 @@
         flex-1 bg-sky-500/50 text-white
         hover:bg-sky-500
         " :loading="loading" @click="handleSubmit">
-            submit
+            Submit
         </BaseButton>
-    </div>
+        <!-- </div> -->
+    </Dialog>
 </template>
 <script setup>
-import { ref } from "vue";
-import axios from 'axios'
+import { ref, onMounted, watchEffect } from "vue";
+import log from '@/utils/log'
+import Dialog from './dialog.vue'
 import BaseInput from './baseInput.vue'
-import BaseButton from "./baseButton.vue";
+import BaseButton from "./baseButton.vue"
 
 const email = ref('')
 const password = ref('')
@@ -47,42 +53,18 @@ const handleSubmit = async () => {
         console.log('[errors]', errors);
         console.log('[data]', data);
     })
-    // .then(res => {
-    //     console.log('[res]', res);
-    // }).catch(error => {
-    //     console.log('[error]', error);
-    // })
-
-
-
-    // axios({
-    //     type: 'post',
-    //     url: 'http://192.168.192.110:9999',
-    //     data: {
-    //         email: email.value.trim(),
-    //         password: password.value
-    //     }
-    // })
-    //     .then(res => {
-    //         console.log('[res]', res);
-    //     })
-
-    // directus.auth.login({
-    //     email: email.value.trim(),
-    //     password: password.value
-    // })
-    //     // res:{access_token:string, expires:number, refresh_token:string}
-    //     .then((res) => {
-    //         loading.value = false
-    //         window.location.href = '/'
-    //         // navigateTo({ name: 'index' })
-    //     })
-    //     // error:string 错误信息
-    //     .catch((error) => {
-    //         loading.value = false
-    //         alert(error)
-    //     })
-
 }
 
+
+onMounted(() => {
+    // 获取 storage 数据
+    chrome.storage.sync.get(['email'])
+        .then(res => {
+            email.value = res.email
+        })
+})
+
+// watchEffect(() => {
+//     chrome.storage.sync.set({ email: email.value })
+// })
 </script>

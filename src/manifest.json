@@ -27,7 +27,7 @@
       "js": ["content-scripts/main.js"]
     }
   ],
-  "permissions": ["tabs"],
+  "permissions": ["storage", "tabs"],
   "host_permissions": ["http://*/*", "https://*/*"],
   "commands": {
     "create": {

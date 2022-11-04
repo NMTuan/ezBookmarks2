@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-03 16:09:06
- * @LastEditTime: 2022-11-03 16:18:17
+ * @LastEditTime: 2022-11-04 11:36:12
  * @LastEditors: NMTuan
  * @Description: 接口
  * @FilePath: \ezBookmarks2\src\api\index.js
@@ -10,7 +10,12 @@
 import { getData, postData } from "./fetch";
 const api = {
   auth: {
-    login: payload => postData("auth/login", payload)
+    // 登录
+    login: data => postData({ path: "auth/login", data, header: {} }),
+    refresh: data => postData({ path: "auth/refresh", data, header: {} })
+  },
+  users: {
+    me: () => getData({ path: "users/me" })
   }
 };
 

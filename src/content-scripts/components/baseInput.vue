@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-22 15:29:20
- * @LastEditTime: 2022-11-03 13:31:27
+ * @LastEditTime: 2022-11-04 09:31:22
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseInput.vue
@@ -12,6 +12,7 @@
         flex
         items-center
         flex-shrink-0 
+        text-white
         bg-neutral-500
         rounded mb-3
        ">
@@ -19,11 +20,11 @@
             <slot name="prepend" />
         </div>
         <input ref="el" class=":uno:
-        text-white
         flex-grow
         bg-transparent
         px-4 py-3
         outline-none
+        placeholder-neutral-400
         " :class="{
             'cursor-not-allowed': disabled,
             'text-neutral-300': disabled

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-22 17:20:26
- * @LastEditTime: 2022-11-03 10:59:10
+ * @LastEditTime: 2022-11-03 17:14:04
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseButton.vue
@@ -26,6 +26,7 @@
 </template>
 
 <script setup>
+import { defineProps } from 'vue';
 const props = defineProps({
     type: {
         type: String,

@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-03 17:02:37
+ * @LastEditTime: 2022-11-04 10:11:43
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\App.vue
 -->
 <template>
   <div>
-    <Login />
+    <Login v-if="!showLogin" />
     <div class=":uno: fixed inset-0 w-full h-full bg-black bg-opacity-10 z-50" v-show="visible">
       <div class=":uno: absolute top-4 right-4 bg-white shadow-lg p-4 rounded-md w-72">
         <h1>Legen...wait for it..dary</h1>
@@ -25,6 +25,8 @@ import { ref, onMounted, reactive } from "vue";
 import log from '@/utils/log'
 import Login from './components/login.vue'
 
+const showLogin = ref(false)
+
 const visible = ref(false);
 const state = reactive({
   currentTab: null
@@ -34,6 +36,9 @@ const handleMessage = ({ type = '', action = '', payload = {} }) => {
   log('[message]', type, action, payload);
   if (type === 'action') {
     visible.value = !visible.value
+  }
+  if (type === 'command' && action === 'create') {
+    showLogin.value = !showLogin.value
   }
 }
 
@@ -62,6 +67,7 @@ defineExpose({ handleMessage })
 
   input,
   button {
+    @apply c-inherit;
     @apply border-none;
     @apply bg-transparent;
   }
