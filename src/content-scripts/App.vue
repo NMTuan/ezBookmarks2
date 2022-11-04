@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-04 10:11:43
+ * @LastEditTime: 2022-11-04 16:21:37
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\App.vue
 -->
 <template>
   <div>
-    <Login v-if="!showLogin" />
+    <Login v-model:show="showLogin" />
     <div class=":uno: fixed inset-0 w-full h-full bg-black bg-opacity-10 z-50" v-show="visible">
       <div class=":uno: absolute top-4 right-4 bg-white shadow-lg p-4 rounded-md w-72">
         <h1>Legen...wait for it..dary</h1>
@@ -17,7 +17,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup>
@@ -58,7 +57,7 @@ defineExpose({ handleMessage })
 <style lang="scss">
 #ezBookmarks2 {
   // @apply text-base;
-  @apply bg-neutral-700;
+  // @apply bg-neutral-700;
 
   * {
     @apply box-border;
