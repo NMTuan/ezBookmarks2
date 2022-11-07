@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 16:45:21
- * @LastEditTime: 2022-11-04 16:57:57
+ * @LastEditTime: 2022-11-07 11:50:52
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\login.vue
@@ -20,11 +20,15 @@
         " :loading="loading" @click="handleSubmit">
             Submit
         </BaseButton>
-        <p v-for="i in 100">{{ i }}</p>
+        <p v-for="i in     100">{{ i }}</p>
     </BaseDialog>
 </template>
 <script setup>
-import { ref, defineProps, defineEmits, watchEffect } from "vue";
+import {
+    ref,
+    // defineProps, defineEmits, 
+    watchEffect
+} from "vue";
 import log from '@/utils/log'
 import storageData from "@/utils/storage";
 

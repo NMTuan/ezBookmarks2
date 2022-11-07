@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-20 17:09:24
- * @LastEditTime: 2022-11-04 17:08:19
+ * @LastEditTime: 2022-11-07 11:51:15
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseDialog.vue
@@ -40,7 +40,10 @@
     </div>
 </template>
 <script setup>
-import { defineProps, defineEmits, watchEffect } from 'vue';
+import {
+    // defineProps, defineEmits,
+    watchEffect
+} from 'vue';
 import BaseSimplebar from '@/content-scripts/components/BaseSimplebar.vue'
 import IconCloseLine from './iconCloseLine.vue';
 const props = defineProps({
