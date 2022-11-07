@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-03 16:09:06
- * @LastEditTime: 2022-11-04 11:36:12
+ * @LastEditTime: 2022-11-07 14:21:34
  * @LastEditors: NMTuan
  * @Description: 接口
  * @FilePath: \ezBookmarks2\src\api\index.js
@@ -16,6 +16,9 @@ const api = {
   },
   users: {
     me: () => getData({ path: "users/me" })
+  },
+  bookmarks: {
+    fetch: query => getData({ path: "items/bookmarks", query })
   }
 };
 

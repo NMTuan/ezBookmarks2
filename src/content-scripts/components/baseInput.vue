@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-22 15:29:20
- * @LastEditTime: 2022-11-04 09:31:22
+ * @LastEditTime: 2022-11-07 16:11:30
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseInput.vue
@@ -21,9 +21,10 @@
         </div>
         <input ref="el" class=":uno:
         flex-grow
-        bg-transparent
+        bg-transparent 
         px-4 py-3
         outline-none
+        text-base
         placeholder-neutral-400
         " :class="{
             'cursor-not-allowed': disabled,

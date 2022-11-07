@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-04 16:32:36
- * @LastEditTime: 2022-11-04 16:45:10
+ * @LastEditTime: 2022-11-07 15:48:25
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\iconCloseLine.vue
@@ -21,7 +21,7 @@
 const props = defineProps({
     size: {
         type: String,
-        default: '18'
+        default: '16'
     },
     color: {
         type: String,

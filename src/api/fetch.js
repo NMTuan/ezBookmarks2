@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-03 16:05:26
- * @LastEditTime: 2022-11-04 15:33:06
+ * @LastEditTime: 2022-11-07 14:20:31
  * @LastEditors: NMTuan
  * @Description: 异步处理
  * @FilePath: \ezBookmarks2\src\api\fetch.js
@@ -13,8 +13,20 @@ import storageData from "@/utils/storage";
 
 const defaultHeader = { "Content-Type": "application/json" };
 
-const _fetch = ({ path, method = "get", data = null, headers = null }) => {
-  const fetchPath = `${import.meta.env.VITE_HOST}/${path}`;
+const _fetch = ({
+  path,
+  method = "get",
+  query = null,
+  data = null,
+  headers = null
+}) => {
+  let fetchPath = `${import.meta.env.VITE_HOST}/${path}`;
+
+  if (query) {
+    fetchPath += `?${new URLSearchParams(query)}`;
+  }
+  log("[query]", query);
+  log("[fetchPath]", fetchPath);
 
   const fetchParams = {};
   fetchParams.method = method;

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-04 15:46:40
+ * @LastEditTime: 2022-11-07 16:51:36
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\background.js
@@ -46,6 +46,60 @@ const handleMessage = {
       }
       return res;
     });
+  },
+  fetchBookmarks: payload => {
+    // 过滤参数
+    // TODO 空格分割条件；井号匹配标签
+    const queryFilter = () => {
+      let f = {};
+      if (payload.q === "") {
+        return "";
+      } else {
+        f = {
+          _or: [
+            {
+              name: {
+                _contains: payload.q
+              }
+            },
+            {
+              url: {
+                _contains: payload.q
+              }
+            },
+            {
+              tags: {
+                tags_name: {
+                  _contains: payload.q
+                }
+              }
+            }
+          ]
+        };
+      }
+      return JSON.stringify(f);
+    };
+
+    return api.bookmarks
+      .fetch({
+        meta: "*",
+        fields: [
+          "id",
+          "name",
+          "url",
+          // 'date_updated',
+          // 'date_created',
+          "tags.*",
+          "count(clicks)"
+          // 'clicks.*'
+        ],
+        filter: queryFilter(),
+        // sort: ['clicks.date_created']
+        sort: ["-date_updated"]
+      })
+      .then(res => {
+        return res;
+      });
   }
 };
 

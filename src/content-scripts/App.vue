@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-04 16:21:37
+ * @LastEditTime: 2022-11-07 15:58:31
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\App.vue
@@ -10,6 +10,7 @@
 <template>
   <div>
     <Login v-model:show="showLogin" />
+    <Search v-model:show="showSearch" />
     <div class=":uno: fixed inset-0 w-full h-full bg-black bg-opacity-10 z-50" v-show="visible">
       <div class=":uno: absolute top-4 right-4 bg-white shadow-lg p-4 rounded-md w-72">
         <h1>Legen...wait for it..dary</h1>
@@ -23,8 +24,10 @@
 import { ref, onMounted, reactive } from "vue";
 import log from '@/utils/log'
 import Login from './components/login.vue'
+import Search from './components/search.vue'
 
 const showLogin = ref(false)
+const showSearch = ref(false)
 
 const visible = ref(false);
 const state = reactive({
@@ -38,6 +41,9 @@ const handleMessage = ({ type = '', action = '', payload = {} }) => {
   }
   if (type === 'command' && action === 'create') {
     showLogin.value = !showLogin.value
+  }
+  if (type === 'command' && action === 'search') {
+    showSearch.value = !showSearch.value
   }
 }
 
@@ -56,12 +62,14 @@ defineExpose({ handleMessage })
 </script>
 <style lang="scss">
 #ezBookmarks2 {
-  // @apply text-base;
+
+  @apply text-base;
   // @apply bg-neutral-700;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   * {
     @apply box-border;
-    @apply text-base font-normal not-italic;
+    @apply font-normal not-italic;
   }
 
   input,

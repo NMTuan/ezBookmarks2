@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-20 17:09:24
- * @LastEditTime: 2022-11-07 11:51:15
+ * @LastEditTime: 2022-11-07 15:38:44
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseDialog.vue
@@ -17,7 +17,7 @@
                     md:w-70% 
                     lg:w-50%
                     " @click.stop="clickContainer">
-                    <div class=":uno: flex items-center text-lg">
+                    <div v-if="!noHeader" class=":uno: flex items-center text-lg">
                         <div class=":uno: flex-1">
                             {{ title }}
                         </div>
@@ -28,7 +28,7 @@
                             <IconCloseLine />
                         </div>
                     </div>
-                    <div class=":uno: mt-6 mb-2">
+                    <div :class="{ ':uno: mt-6': !noHeader, ':uno: mb-2': !noHeader }">
                         <slot />
                     </div>
                     <div v-if="$slots.foot">
@@ -61,6 +61,11 @@ const props = defineProps({
     show: {
         type: Boolean,
         default: false
+    },
+    // 隐藏头部
+    noHeader: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -87,13 +92,15 @@ const clickCloseIcon = () => {
 const clickContainer = () => {
     return
 }
-
+const fontSize = document.querySelector("html").style.fontSize
 watchEffect(() => {
     if (props.show) {
         document.querySelector('html').style.overflow = 'hidden'
+        document.querySelector("html").style.fontSize = "16px"; // unocss rem2px有问题，所以继续使用 rem，为保证样式统一，强制处理
         document.body.style.overflow = 'hidden'
     } else {
         document.querySelector('html').style.overflow = ''
+        document.querySelector("html").style.fontSize = fontSize;
         document.body.style.overflow = ''
     }
 })
