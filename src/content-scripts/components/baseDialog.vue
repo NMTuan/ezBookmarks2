@@ -2,14 +2,15 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-20 17:09:24
- * @LastEditTime: 2022-11-07 15:38:44
+ * @LastEditTime: 2022-11-07 17:29:33
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseDialog.vue
 -->
 <template>
     <div v-if="show" class=":uno: text-neutral-300 text-left">
-        <div class=":uno: absolute inset-0 z-10000 bg-transparent backdrop-blur-sm" @click="clickMask">
+        <div ref="el" class=":uno: absolute top-0 left-0 w-screen h-screen z-10000 bg-transparent backdrop-blur-sm"
+            @click="clickMask">
             <BaseSimplebar class=":uno: h-full overflow-hidden">
                 <div class=":uno: bg-neutral-700 mx-auto my-12vh overflow-hidden rounded p-4
                     w-90%
@@ -41,11 +42,13 @@
 </template>
 <script setup>
 import {
-    // defineProps, defineEmits,
-    watchEffect
+    ref,
+    watchEffect,
+    nextTick
 } from 'vue';
 import BaseSimplebar from '@/content-scripts/components/BaseSimplebar.vue'
 import IconCloseLine from './iconCloseLine.vue';
+const el = ref()
 const props = defineProps({
     // 标题
     title: {
@@ -93,14 +96,21 @@ const clickContainer = () => {
     return
 }
 const fontSize = document.querySelector("html").style.fontSize
+let scrollTop = 0
 watchEffect(() => {
+    const html = document.querySelector('html')
     if (props.show) {
-        document.querySelector('html').style.overflow = 'hidden'
-        document.querySelector("html").style.fontSize = "16px"; // unocss rem2px有问题，所以继续使用 rem，为保证样式统一，强制处理
+        scrollTop = html.scrollTop
+        // html.style.overflow = 'hidden'
+        html.style.fontSize = "16px"; // unocss rem2px有问题，所以继续使用 rem，为保证样式统一，强制处理
         document.body.style.overflow = 'hidden'
+        nextTick(() => {
+            el.value.style.top = scrollTop + 'px'
+        })
+        // html.scrollTop = scrollTop
     } else {
-        document.querySelector('html').style.overflow = ''
-        document.querySelector("html").style.fontSize = fontSize;
+        // html.style.overflow = ''
+        html.style.fontSize = fontSize;
         document.body.style.overflow = ''
     }
 })
