@@ -101,15 +101,13 @@ watchEffect(() => {
     const html = document.querySelector('html')
     if (props.show) {
         scrollTop = html.scrollTop
-        // html.style.overflow = 'hidden'
         html.style.fontSize = "16px"; // unocss rem2px有问题，所以继续使用 rem，为保证样式统一，强制处理
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = 'hidden' // 锁定页面滚动。百度结果页特殊，暂时不处理。
         nextTick(() => {
+            // 让弹层显示在可视窗口
             el.value.style.top = scrollTop + 'px'
         })
-        // html.scrollTop = scrollTop
     } else {
-        // html.style.overflow = ''
         html.style.fontSize = fontSize;
         document.body.style.overflow = ''
     }

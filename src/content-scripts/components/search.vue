@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-07 13:21:12
- * @LastEditTime: 2022-11-07 16:52:27
+ * @LastEditTime: 2022-11-08 10:21:42
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\search.vue
@@ -72,7 +72,10 @@ watch(showState, (val) => {
             fetch()
         }
         nextTick(() => {
-            el.value.focus()
+            // 由于弹层位置调整已经是在nextTick中触发，所以这里再加个延时
+            setTimeout(() => {
+                el.value.focus()
+            }, 200)
         })
     }
 })
