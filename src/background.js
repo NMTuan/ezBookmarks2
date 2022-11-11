@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-07 16:51:36
+ * @LastEditTime: 2022-11-11 17:25:46
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\background.js
@@ -96,6 +96,28 @@ const handleMessage = {
         filter: queryFilter(),
         // sort: ['clicks.date_created']
         sort: ["-date_updated"]
+      })
+      .then(res => {
+        return res;
+      });
+  },
+  fetchBookmark: payload => {
+    return api.bookmarks
+      .fetch({
+        meta: "*",
+        fields: [
+          "id",
+          "name",
+          "url",
+          // 'date_updated',
+          // 'date_created',
+          "tags.*",
+          "count(clicks)"
+          // 'clicks.*'
+        ],
+        // sort: ['clicks.date_created']
+        sort: ["-date_updated"],
+        ...payload
       })
       .then(res => {
         return res;

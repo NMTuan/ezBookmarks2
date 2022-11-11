@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-22 15:29:20
- * @LastEditTime: 2022-11-11 16:19:01
+ * @LastEditTime: 2022-11-11 16:44:48
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseInput.vue
@@ -15,8 +15,10 @@
         text-white
         bg-neutral-500
         rounded mb-3
-       ">
-        <div if="$slots.prepend">
+       " :class="{
+           'text-white/60': disabled
+       }">
+        <div v-if="$slots.prepend">
             <slot name="prepend" />
         </div>
         <input ref="el" class=":uno:
@@ -27,8 +29,7 @@
         text-base
         placeholder-neutral-400
         " :class="{
-            'cursor-not-allowed': disabled,
-            'text-neutral-400': disabled
+            'cursor-not-allowed': disabled
         }" :type="type" :placeholder="placeholder" :autocomplete="autocomplete" :value="modelValue"
             @input="$emit('update:modelValue', $event.target.value)" :disabled="disabled" />
         <div v-if="$slots.append">

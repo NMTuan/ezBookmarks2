@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-08 11:54:19
- * @LastEditTime: 2022-11-11 16:40:17
+ * @LastEditTime: 2022-11-11 17:23:29
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\create.vue
@@ -100,12 +100,33 @@ onMounted(() => {
 })
 
 watch(showState, (val) => {
-    if (val) {
-        nextTick(() => {
-            setTimeout(() => {
-                el.value.focus()
-            }, 200)
-        })
+    if (!val) {
+        return
     }
+
+    // 查询当前数据
+    chrome.runtime.sendMessage({
+        type: 'fetchBookmark',
+        payload: {
+            filter: JSON.stringify({
+                url: {
+                    _eq: formData.value.url
+                }
+            })
+        }
+
+    }, ({ errors, data }) => {
+        log('[errors]', errors);
+        log('[data]', data);
+        loading.value = false
+    })
+
+
+    // 聚焦 tags 输入框
+    nextTick(() => {
+        setTimeout(() => {
+            el.value.focus()
+        }, 200)
+    })
 })
 </script>
