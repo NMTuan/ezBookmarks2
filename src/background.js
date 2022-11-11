@@ -100,6 +100,9 @@ const handleMessage = {
       .then(res => {
         return res;
       });
+  },
+  createBookmark: payload => {
+    return api.bookmarks.create(payload)
   }
 };
 

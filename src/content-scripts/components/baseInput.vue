@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-22 15:29:20
- * @LastEditTime: 2022-11-07 16:11:30
+ * @LastEditTime: 2022-11-11 16:19:01
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseInput.vue
@@ -28,7 +28,7 @@
         placeholder-neutral-400
         " :class="{
             'cursor-not-allowed': disabled,
-            'text-neutral-300': disabled
+            'text-neutral-400': disabled
         }" :type="type" :placeholder="placeholder" :autocomplete="autocomplete" :value="modelValue"
             @input="$emit('update:modelValue', $event.target.value)" :disabled="disabled" />
         <div v-if="$slots.append">
