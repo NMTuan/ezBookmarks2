@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-08 11:54:19
- * @LastEditTime: 2022-11-18 14:16:48
+ * @LastEditTime: 2022-11-18 15:24:15
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\create.vue
@@ -49,6 +49,7 @@ const formData = ref({
     url: ''
 })
 const tags = ref('')
+const deleteTagsId = ref([])    // 要移除的tagsId
 const loading = ref(false)
 const el = ref()
 
@@ -94,7 +95,11 @@ const handleSubmit = () => {
                 id: formData.value.id,
                 name: formData.value.name,
                 // url: formData.value.url,
-                // tags: formatedTags.value,
+                tags: {
+                    create: formatedTags.value,
+                    delete: deleteTagsId.value
+                }
+                // tags: ,
             }
         }, ({ errors, data }) => {
             log('[errors]', errors);
@@ -152,9 +157,8 @@ watch(showState, (val) => {
             formData.value.name = data[0].name
             formData.value.url = data[0].url
             tags.value = data[0].tags.reduce((total, item) => {
-                if (item.tags_name !== undefined) {
-                    total.push(item.tags_name)
-                }
+                deleteTagsId.value.push(item.id)
+                total.push(item.tags_name)
                 return total
             }, []).join(' ')
         }

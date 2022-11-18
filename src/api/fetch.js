@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-03 16:05:26
- * @LastEditTime: 2022-11-18 14:13:24
+ * @LastEditTime: 2022-11-18 15:00:43
  * @LastEditors: NMTuan
  * @Description: 异步处理
  * @FilePath: \ezBookmarks2\src\api\fetch.js
@@ -15,7 +15,7 @@ const defaultHeader = { "Content-Type": "application/json" };
 
 const _fetch = ({
   path,
-  method = "get",
+  method = "GET",
   query = null,
   data = null,
   headers = null
@@ -31,7 +31,7 @@ const _fetch = ({
   const fetchParams = {};
   fetchParams.method = method;
 
-  if (['post', 'patch'].includes(method) && data) {
+  if (["POST", "PATCH"].includes(method) && data) {
     fetchParams.body = JSON.stringify(data);
   }
 
@@ -49,9 +49,12 @@ const _fetch = ({
   }
 
   return fetch(fetchPath, fetchParams)
-    .then(res => res.json())
     .then(res => {
       log("[fetch:res]", res);
+      return res.json();
+    })
+    .then(res => {
+      log("[fetch:res_json]", res);
       // 如果 token 过期，则需要刷新
       if (res.errors && res.errors[0].extensions.code === "TOKEN_EXPIRED") {
         // 刷新 token
@@ -82,11 +85,14 @@ const _fetch = ({
       } else {
         return res;
       }
+    })
+    .catch(error => {
+      log("[error]", error.message);
     });
 };
 
 const getData = params => _fetch(params);
-const postData = params => _fetch({ method: "post", ...params });
-const patchData = params => _fetch({ method: "patch", ...params });
+const postData = params => _fetch({ method: "POST", ...params });
+const patchData = params => _fetch({ method: "PATCH", ...params });
 
 export { getData, postData, patchData };
