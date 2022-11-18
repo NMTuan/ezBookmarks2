@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-07 14:57:30
- * @LastEditTime: 2022-11-07 15:56:41
+ * @LastEditTime: 2022-11-18 15:26:38
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\listItem.vue
@@ -43,7 +43,8 @@
         </div>
         <div class=":uno: flex items-center">
             <div class=":uno: flex items-center text-neutral-400">
-                <div v-for="tag in item.tags" class=":uno: text-xs mr-2 px-3 py-1 rounded bg-neutral-800/50">
+                <div v-for="tag in item.tags"
+                    class=":uno: text-xs mr-2 px-3 py-1 rounded bg-neutral-800/50 whitespace-nowrap">
                     {{ tag.tags_name }}
                 </div>
             </div>
