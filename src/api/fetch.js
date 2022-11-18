@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-03 16:05:26
- * @LastEditTime: 2022-11-18 15:00:43
+ * @LastEditTime: 2022-11-18 15:32:06
  * @LastEditors: NMTuan
  * @Description: 异步处理
  * @FilePath: \ezBookmarks2\src\api\fetch.js
@@ -88,6 +88,7 @@ const _fetch = ({
     })
     .catch(error => {
       log("[error]", error.message);
+      return { errors: error.message };
     });
 };
 
