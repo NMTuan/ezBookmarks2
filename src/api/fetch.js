@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-03 16:05:26
- * @LastEditTime: 2022-11-18 15:32:06
+ * @LastEditTime: 2022-11-18 17:20:36
  * @LastEditors: NMTuan
  * @Description: 异步处理
  * @FilePath: \ezBookmarks2\src\api\fetch.js
@@ -95,5 +95,6 @@ const _fetch = ({
 const getData = params => _fetch(params);
 const postData = params => _fetch({ method: "POST", ...params });
 const patchData = params => _fetch({ method: "PATCH", ...params });
+const deleteData = params => _fetch({ method: "DELETE", ...params });
 
-export { getData, postData, patchData };
+export { getData, postData, patchData, deleteData };

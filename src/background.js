@@ -128,6 +128,9 @@ const handleMessage = {
   },
   updateBookmark: payload => {
     return api.bookmarks.update(payload);
+  },
+  deleteBookmark: payload => {
+    return api.bookmarks.delete(payload);
   }
 };
 
