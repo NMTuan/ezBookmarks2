@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 16:45:21
- * @LastEditTime: 2022-11-07 11:50:52
+ * @LastEditTime: 2022-11-18 16:17:00
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\login.vue
@@ -66,6 +66,9 @@ const handleSubmit = async () => {
     }, ({ errors, data }) => {
         log('[errors]', errors);
         log('[data]', data);
+        if (!errors) {
+            handleClose()
+        }
     })
 }
 

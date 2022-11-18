@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-08 11:56:45
+ * @LastEditTime: 2022-11-18 16:15:58
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\App.vue
@@ -41,6 +41,9 @@ const handleMessage = ({ type = '', action = '', payload = {} }) => {
   log('[message]', type, action, payload);
   if (type === 'action') {
     visible.value = !visible.value
+  }
+  if (type === 'command' && action === 'login') {
+    showLogin.value = !showLogin.value
   }
   if (type === 'command' && action === 'create') {
     showCreate.value = !showCreate.value

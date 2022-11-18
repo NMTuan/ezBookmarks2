@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-18 14:08:52
+ * @LastEditTime: 2022-11-18 15:40:03
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\background.js
@@ -124,10 +124,10 @@ const handleMessage = {
       });
   },
   createBookmark: payload => {
-    return api.bookmarks.create(payload)
+    return api.bookmarks.create(payload);
   },
   updateBookmark: payload => {
-    return api.bookmarks.update(payload)
+    return api.bookmarks.update(payload);
   }
 };
 
@@ -152,7 +152,7 @@ chrome.commands.onCommand.addListener(command => {
   getCurrentTab().then(tab => {
     chrome.tabs.sendMessage(tab.id, {
       type: "command",
-      action: command
+      action: storageData.logged ? command : "login"
     });
   });
 });

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-08 11:54:19
- * @LastEditTime: 2022-11-18 15:24:15
+ * @LastEditTime: 2022-11-18 16:14:23
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\create.vue
@@ -129,8 +129,8 @@ const handleSubmit = () => {
 }
 
 onMounted(() => {
-    // formData.value.name = document.title
-    // formData.value.url = location.href
+    formData.value.name = document.title
+    formData.value.url = location.href
 })
 
 watch(showState, (val) => {
