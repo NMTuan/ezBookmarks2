@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-08 11:54:19
- * @LastEditTime: 2022-11-11 17:23:29
+ * @LastEditTime: 2022-11-18 14:16:48
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\create.vue
@@ -13,9 +13,14 @@
             <BaseInput v-model="formData.name" placeholder="Site Title" />
             <BaseInput v-model="formData.url" disabled placeholder="Site Url" />
             <BaseInput ref='el' v-model="tags" placeholder="Tags(commas or spaces are automatically split)" />
-            <BaseButton class=":uno: flex-1 bg-sky-500/50 hover:bg-sky-500" :loading="loading">
-                Create
-            </BaseButton>
+            <div class="flex">
+                <BaseButton class=":uno: flex-1 bg-sky-500/50 hover:bg-sky-500" :loading="loading">
+                    {{ formData.id ? 'Update' : 'Create' }}
+                </BaseButton>
+                <BaseButton v-if="formData.id" class=":uno: ml-3 bg-red-500/50 hover:bg-red-800" type="button">
+                    <IconDeleteBin5Line />
+                </BaseButton>
+            </div>
             <pre>{{ formatedTags }}</pre>
             <pre>{{ formData }}</pre>
         </form>
@@ -28,6 +33,7 @@ import log from "@/utils/log";
 import BaseDialog from './baseDialog.vue';
 import BaseInput from './baseInput.vue';
 import BaseButton from './baseButton.vue';
+import IconDeleteBin5Line from './iconDeleteBin5Line.vue'
 
 const props = defineProps({
     show: {
@@ -38,6 +44,7 @@ const props = defineProps({
 const emits = defineEmits(['update:show'])
 
 const formData = ref({
+    id: '',
     name: '',
     url: ''
 })
@@ -78,25 +85,47 @@ const handleSubmit = () => {
         return
     }
     loading.value = true
-    chrome.runtime.sendMessage({
-        type: 'createBookmark',
-        payload: {
-            name: formData.value.name,
-            url: formData.value.url,
-            tags: formatedTags.value,
-            date_updated: new Date().toISOString()
-        }
-    }, ({ errors, data }) => {
-        log('[errors]', errors);
-        log('[data]', data);
-        loading.value = false
-        emits('update:show', false)
-    })
+
+    if (formData.value.id) {
+        // 编辑书签
+        chrome.runtime.sendMessage({
+            type: 'updateBookmark',
+            payload: {
+                id: formData.value.id,
+                name: formData.value.name,
+                // url: formData.value.url,
+                // tags: formatedTags.value,
+            }
+        }, ({ errors, data }) => {
+            log('[errors]', errors);
+            log('[data]', data);
+            loading.value = false
+            emits('update:show', false)
+        })
+    } else {
+        // 创建书签
+        chrome.runtime.sendMessage({
+            type: 'createBookmark',
+            payload: {
+                name: formData.value.name,
+                url: formData.value.url,
+                tags: formatedTags.value,
+                date_updated: new Date().toISOString()
+            }
+        }, ({ errors, data }) => {
+            log('[errors]', errors);
+            log('[data]', data);
+            loading.value = false
+            emits('update:show', false)
+        })
+    }
+
+
 }
 
 onMounted(() => {
-    formData.value.name = document.title
-    formData.value.url = location.href
+    // formData.value.name = document.title
+    // formData.value.url = location.href
 })
 
 watch(showState, (val) => {
@@ -110,7 +139,7 @@ watch(showState, (val) => {
         payload: {
             filter: JSON.stringify({
                 url: {
-                    _eq: formData.value.url
+                    _eq: location.href
                 }
             })
         }
@@ -118,6 +147,17 @@ watch(showState, (val) => {
     }, ({ errors, data }) => {
         log('[errors]', errors);
         log('[data]', data);
+        if (!errors && data.length > 0) {
+            formData.value.id = data[0].id
+            formData.value.name = data[0].name
+            formData.value.url = data[0].url
+            tags.value = data[0].tags.reduce((total, item) => {
+                if (item.tags_name !== undefined) {
+                    total.push(item.tags_name)
+                }
+                return total
+            }, []).join(' ')
+        }
         loading.value = false
     })
 

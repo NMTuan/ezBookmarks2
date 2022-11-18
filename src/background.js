@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-11 17:25:46
+ * @LastEditTime: 2022-11-18 14:08:52
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\background.js
@@ -125,6 +125,9 @@ const handleMessage = {
   },
   createBookmark: payload => {
     return api.bookmarks.create(payload)
+  },
+  updateBookmark: payload => {
+    return api.bookmarks.update(payload)
   }
 };
 

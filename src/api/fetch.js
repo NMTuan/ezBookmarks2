@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-03 16:05:26
- * @LastEditTime: 2022-11-07 14:20:31
+ * @LastEditTime: 2022-11-18 14:13:24
  * @LastEditors: NMTuan
  * @Description: 异步处理
  * @FilePath: \ezBookmarks2\src\api\fetch.js
@@ -31,7 +31,7 @@ const _fetch = ({
   const fetchParams = {};
   fetchParams.method = method;
 
-  if (method === "post" && data) {
+  if (['post', 'patch'].includes(method) && data) {
     fetchParams.body = JSON.stringify(data);
   }
 
@@ -87,5 +87,6 @@ const _fetch = ({
 
 const getData = params => _fetch(params);
 const postData = params => _fetch({ method: "post", ...params });
+const patchData = params => _fetch({ method: "patch", ...params });
 
-export { getData, postData };
+export { getData, postData, patchData };
