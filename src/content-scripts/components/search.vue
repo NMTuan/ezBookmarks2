@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-07 13:21:12
- * @LastEditTime: 2022-11-21 16:07:39
+ * @LastEditTime: 2022-11-21 16:25:27
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\search.vue
@@ -17,7 +17,7 @@
     </BaseDialog>
 </template>
 <script setup>
-import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import log from '@/utils/log'
 
 import BaseDialog from './baseDialog.vue';
@@ -72,16 +72,17 @@ const handleClose = () => {
 
 // 处理按键
 const handleKeydown = (e) => {
-    e.preventDefault();
 
     log('keydown', e.key)
     // 高亮 向上
     if (e.key === 'ArrowUp' && active.value > 0) {
+        e.preventDefault();
         active.value--
         handleActiveCanBeSee()
     }
     // 高亮 向下
     if (e.key === 'ArrowDown' && active.value < lists.value.length - 1) {
+        e.preventDefault();
         active.value++
         handleActiveCanBeSee()
     }
@@ -116,6 +117,8 @@ const handleActiveCanBeSee = () => {
 // 显示时聚焦搜索框
 watch(showState, (val) => {
     if (val) {
+        window.addEventListener('keydown', handleKeydown) // 监听按键
+
         // 如果列表空，且没搜过，则取一次数据
         if (q.value === '' && lists.value.length === 0) {
             fetch()
@@ -126,19 +129,14 @@ watch(showState, (val) => {
                 el.value.focus()
             }, 200)
         })
+    } else {
+        window.removeEventListener('keydown', handleKeydown)    // 取消监听按键
     }
 })
 
 // 监听搜索内容
 watch(q, () => {
     fetch()
-})
-
-onMounted(() => {
-    window.addEventListener('keydown', handleKeydown)
-})
-onUnmounted(() => {
-    window.removeEventListener('keydown', handleKeydown)
 })
 
 </script>

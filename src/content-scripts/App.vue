@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-02 13:36:26
- * @LastEditTime: 2022-11-18 16:15:58
+ * @LastEditTime: 2022-11-21 16:16:27
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\App.vue
@@ -42,13 +42,25 @@ const handleMessage = ({ type = '', action = '', payload = {} }) => {
   if (type === 'action') {
     visible.value = !visible.value
   }
+  // 登录
   if (type === 'command' && action === 'login') {
+    if ([showCreate.value, showSearch.value].includes(true)) {
+      return
+    }
     showLogin.value = !showLogin.value
   }
+  // 创建 & 编辑
   if (type === 'command' && action === 'create') {
+    if ([showLogin.value, showSearch.value].includes(true)) {
+      return
+    }
     showCreate.value = !showCreate.value
   }
+  // 搜索
   if (type === 'command' && action === 'search') {
+    if ([showLogin.value, showCreate.value].includes(true)) {
+      return
+    }
     showSearch.value = !showSearch.value
   }
 }

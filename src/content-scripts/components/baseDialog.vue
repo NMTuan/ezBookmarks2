@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-20 17:09:24
- * @LastEditTime: 2022-11-21 13:57:53
+ * @LastEditTime: 2022-11-21 16:24:34
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseDialog.vue
@@ -43,8 +43,6 @@
 <script setup>
 import {
     ref,
-    onMounted,
-    onUnmounted,
     watchEffect,
     nextTick
 } from 'vue';
@@ -128,14 +126,13 @@ watchEffect(() => {
     }
 })
 
-onMounted(() => {
-    if (props.closeOnPressEscape) {
+watchEffect(() => {
+    if (props.show && props.closeOnPressEscape) {
         window.addEventListener('keydown', pressEscape)
     }
-})
-onUnmounted(() => {
-    if (props.closeOnPressEscape) {
+    if (!props.show && props.closeOnPressEscape) {
         window.removeEventListener('keydown', pressEscape)
     }
 })
+
 </script>
