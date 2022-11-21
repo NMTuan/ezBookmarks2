@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-22 15:29:20
- * @LastEditTime: 2022-11-11 16:44:48
+ * @LastEditTime: 2022-11-21 16:35:44
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseInput.vue
@@ -28,6 +28,7 @@
         outline-none
         text-base
         placeholder-neutral-400
+        !h-12
         " :class="{
             'cursor-not-allowed': disabled
         }" :type="type" :placeholder="placeholder" :autocomplete="autocomplete" :value="modelValue"
