@@ -131,6 +131,9 @@ const handleMessage = {
   },
   deleteBookmark: payload => {
     return api.bookmarks.delete(payload);
+  },
+  createClick: payload => {
+    return api.clicks.create(payload);
   }
 };
 

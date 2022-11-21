@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-07 14:57:30
- * @LastEditTime: 2022-11-18 15:26:38
+ * @LastEditTime: 2022-11-21 14:46:40
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\listItem.vue
@@ -20,13 +20,13 @@
                 {{ item.name }}
                 <sup class=":uno: text-white/50 text-xs">{{ item.clicks_count }}</sup>
             </div>
-            <div class=":uno:
+            <!-- <div class=":uno:
             ml-1 flex items-center
             rounded w-6 h-6 text-center
             hover:bg-sky-800/50
             ">
                 <IconPencilFill v-show="active" @click.stop="" class=":uno: mx-auto" />
-            </div>
+            </div> -->
             <!-- <NuxtLink :to="{
                 name: 'edit-id', params: {
                     id: item.id
@@ -56,7 +56,7 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue'
-import IconPencilFill from './iconPencilFill.vue';
+// import IconPencilFill from './iconPencilFill.vue';
 const props = defineProps({
     item: {
         type: Object,
@@ -69,6 +69,8 @@ const props = defineProps({
         default: false
     }
 })
+
+const emits = defineEmits(['reload'])
 
 const itemClassNames = computed(() => {
     const className = []
@@ -93,14 +95,24 @@ const urlClassName = computed(() => {
 const handleClick = () => {
     // 打开
     window.open(props.item.url)
-
     // 次数+1，同时更新下编辑时间，列表要根据编辑时间排序
-    // directus.items('clicks').createOne({
-    //     bookmark_id: props.item.id
-    // })
-    //     .then(() => {
-    //         return directus.items('bookmarks').updateOne(props.item.id, {})
-    //     })
+    chrome.runtime.sendMessage({
+        type: 'createClick',
+        payload: {
+            bookmark_id: props.item.id
+        }
+    }, ({ errors, data }) => {
+        if (!errors) {
+            chrome.runtime.sendMessage({
+                type: 'updateBookmark',
+                payload: {
+                    id: props.item.id
+                }
+            }, () => {
+                emits('reload')
+            })
+        }
+    })
 }
 
 </script>

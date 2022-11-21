@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-07 13:21:12
- * @LastEditTime: 2022-11-21 13:57:10
+ * @LastEditTime: 2022-11-21 14:49:25
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\search.vue
@@ -12,7 +12,7 @@
         <BaseInput ref='el' v-model="q" class="!mb-0"></BaseInput>
         <div class="mt-3" v-if="lists.length > 0">
             <ListItem v-for="(item, index) in lists" :item="item" :active="index === active"
-                @mouseenter="handleActive(index)"></ListItem>
+                @mouseenter="handleActive(index)" @reload="fetch()"></ListItem>
         </div>
     </BaseDialog>
 </template>

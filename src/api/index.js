@@ -31,6 +31,9 @@ const api = {
       return patchData({ path: `items/bookmarks/${id}`, data: payload });
     },
     delete: data => deleteData({ path: `items/bookmarks/${data.id}` })
+  },
+  clicks: {
+    create: data => postData({ path: "items/clicks", data })
   }
 };
 
