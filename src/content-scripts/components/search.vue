@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-07 13:21:12
- * @LastEditTime: 2022-11-21 16:25:27
+ * @LastEditTime: 2022-11-21 16:29:39
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\search.vue
@@ -47,7 +47,6 @@ const handleActive = (index) => {
 }
 
 const fetch = (close) => {
-    active.value = 0    // 每次获取数据，重置高亮项
     chrome.runtime.sendMessage({
         'type': 'fetchBookmarks',
         payload: { q: q.value } // 这里注意，如果直接传 q，那在 q=='' 的时候传过去变成 {}
@@ -59,6 +58,7 @@ const fetch = (close) => {
             lists.value = []
             return
         }
+        active.value = 0    // 每次获取数据，重置高亮项
         lists.value = data
         if (close) {
             handleClose()
