@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-07 14:57:30
- * @LastEditTime: 2022-11-21 14:46:40
+ * @LastEditTime: 2022-11-21 15:13:20
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\listItem.vue
@@ -109,10 +109,12 @@ const handleClick = () => {
                     id: props.item.id
                 }
             }, () => {
-                emits('reload')
+                emits('reload', true)
             })
         }
     })
 }
+
+defineExpose({ handleClick }) // 向父级暴露
 
 </script>

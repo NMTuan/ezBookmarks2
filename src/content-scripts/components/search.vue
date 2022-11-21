@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-07 13:21:12
- * @LastEditTime: 2022-11-21 14:49:25
+ * @LastEditTime: 2022-11-21 16:07:39
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\search.vue
@@ -11,13 +11,13 @@
     <BaseDialog :show="show" @update:show="handleClose" no-header closeOnClickMask closeOnPressEscape>
         <BaseInput ref='el' v-model="q" class="!mb-0"></BaseInput>
         <div class="mt-3" v-if="lists.length > 0">
-            <ListItem v-for="(item, index) in lists" :item="item" :active="index === active"
-                @mouseenter="handleActive(index)" @reload="fetch()"></ListItem>
+            <ListItem v-for="(item, index) in lists" :item="item" :active="index === active" ref="items"
+                @mouseenter="handleActive(index)" @reload="fetch"></ListItem>
         </div>
     </BaseDialog>
 </template>
 <script setup>
-import { ref, computed, watch, nextTick } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import log from '@/utils/log'
 
 import BaseDialog from './baseDialog.vue';
@@ -27,7 +27,9 @@ import ListItem from './listItem.vue'
 const el = ref()
 const q = ref('')   // 关键字
 const lists = ref([])
+const items = ref([])
 const active = ref(0)   // 高亮项目
+const correction = 50   // 上下滚动时，距边的修正值
 
 const props = defineProps({
     'show': {
@@ -44,7 +46,8 @@ const handleActive = (index) => {
     active.value = index
 }
 
-const fetch = () => {
+const fetch = (close) => {
+    active.value = 0    // 每次获取数据，重置高亮项
     chrome.runtime.sendMessage({
         'type': 'fetchBookmarks',
         payload: { q: q.value } // 这里注意，如果直接传 q，那在 q=='' 的时候传过去变成 {}
@@ -54,14 +57,60 @@ const fetch = () => {
         if (errors) {
             alert(errors.message)
             lists.value = []
-        } else {
-            lists.value = data
+            return
+        }
+        lists.value = data
+        if (close) {
+            handleClose()
         }
     })
 }
 
 const handleClose = () => {
     emits('update:show', false)
+}
+
+// 处理按键
+const handleKeydown = (e) => {
+    e.preventDefault();
+
+    log('keydown', e.key)
+    // 高亮 向上
+    if (e.key === 'ArrowUp' && active.value > 0) {
+        active.value--
+        handleActiveCanBeSee()
+    }
+    // 高亮 向下
+    if (e.key === 'ArrowDown' && active.value < lists.value.length - 1) {
+        active.value++
+        handleActiveCanBeSee()
+    }
+    // 回车
+    if (e.key === 'Enter') {
+        items.value[active.value].handleClick()
+    }
+}
+
+// 保证高亮项目能看到
+const handleActiveCanBeSee = () => {
+    nextTick(() => {
+        const target = items.value[active.value]
+        const scrollTop = document.querySelector('.simplebar-content-wrapper').scrollTop
+
+        if (active.value === 0) {
+            // 顶
+            document.querySelector('.simplebar-content-wrapper').scrollTop = 0
+        } else if (target.$el.offsetTop + target.$el.clientHeight > scrollTop + window.innerHeight) {
+            // 下边
+            document.querySelector('.simplebar-content-wrapper').scrollTop = target.$el.offsetTop + target.$el.clientHeight - window.innerHeight + correction
+
+        } else if (target.$el.offsetTop < scrollTop) {
+            // 上边
+            document.querySelector('.simplebar-content-wrapper').scrollTop = target.$el.offsetTop - correction
+        }
+
+
+    })
 }
 
 // 显示时聚焦搜索框
@@ -83,6 +132,13 @@ watch(showState, (val) => {
 // 监听搜索内容
 watch(q, () => {
     fetch()
+})
+
+onMounted(() => {
+    window.addEventListener('keydown', handleKeydown)
+})
+onUnmounted(() => {
+    window.removeEventListener('keydown', handleKeydown)
 })
 
 </script>
