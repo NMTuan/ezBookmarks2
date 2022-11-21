@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-10-20 17:09:24
- * @LastEditTime: 2022-11-07 17:29:33
+ * @LastEditTime: 2022-11-21 13:57:53
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\baseDialog.vue
@@ -43,6 +43,8 @@
 <script setup>
 import {
     ref,
+    onMounted,
+    onUnmounted,
     watchEffect,
     nextTick
 } from 'vue';
@@ -57,6 +59,11 @@ const props = defineProps({
     },
     // 点击遮罩是否关闭弹窗
     closeOnClickMask: {
+        type: Boolean,
+        default: false
+    },
+    // 按 esc 关闭弹窗
+    closeOnPressEscape: {
         type: Boolean,
         default: false
     },
@@ -95,6 +102,14 @@ const clickCloseIcon = () => {
 const clickContainer = () => {
     return
 }
+
+// 按 esc 关闭
+const pressEscape = (e) => {
+    if (e.key === 'Escape') {
+        close()
+    }
+}
+
 const fontSize = document.querySelector("html").style.fontSize
 let scrollTop = 0
 watchEffect(() => {
@@ -110,6 +125,17 @@ watchEffect(() => {
     } else {
         html.style.fontSize = fontSize;
         document.body.style.overflow = ''
+    }
+})
+
+onMounted(() => {
+    if (props.closeOnPressEscape) {
+        window.addEventListener('keydown', pressEscape)
+    }
+})
+onUnmounted(() => {
+    if (props.closeOnPressEscape) {
+        window.removeEventListener('keydown', pressEscape)
     }
 })
 </script>

@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-08 11:54:19
- * @LastEditTime: 2022-11-21 13:30:03
+ * @LastEditTime: 2022-11-21 13:58:50
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\create.vue
 -->
 <template>
-    <BaseDialog :show="show" @update:show="handleClose" title="New Bookmark">
+    <BaseDialog :show="show" @update:show="handleClose" title="New Bookmark" closeOnPressEscape>
         <form action="" @submit.prevent="handleSubmit">
             <BaseInput v-model="formData.name" placeholder="Site Title" />
             <BaseInput v-model="formData.url" disabled placeholder="Site Url" />

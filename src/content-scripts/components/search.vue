@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-07 13:21:12
- * @LastEditTime: 2022-11-11 16:04:50
+ * @LastEditTime: 2022-11-21 13:57:10
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content-scripts\components\search.vue
 -->
 <template>
-    <BaseDialog :show="show" @update:show="handleClose" no-header>
+    <BaseDialog :show="show" @update:show="handleClose" no-header closeOnClickMask closeOnPressEscape>
         <BaseInput ref='el' v-model="q" class="!mb-0"></BaseInput>
         <div class="mt-3" v-if="lists.length > 0">
             <ListItem v-for="(item, index) in lists" :item="item" :active="index === active"
