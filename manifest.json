@@ -1,7 +1,11 @@
 {
     "manifest_version": 3,
-    "name": "CRXJS Vue Vite Example",
-    "version": "1.0.0",
+    "name": "简单书签2",
+    "version": "2.0.0",
+    "description": "无压的浏览器书签管理插件",
+    "author": "NMTuan",
+    "homepage_url": "https://github.com/NMTuan/ezBookmarks2",
+
     "action": { "default_popup": "popup.html" },
     "options_page": "options.html",
     "background": {
@@ -20,7 +24,7 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["pages/test.html"],
+            "resources": ["pages/dialog.html"],
             "matches": ["<all_urls>"]
         }
     ]

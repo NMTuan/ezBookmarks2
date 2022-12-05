@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 10:18:29
- * @LastEditTime: 2022-12-02 11:40:35
+ * @LastEditTime: 2022-12-05 13:40:21
  * @LastEditors: NMTuan
  * @Description:
- * @FilePath: \base_vite_chrome_extension\vite.config.js
+ * @FilePath: \ezBookmarks2\vite.config.js
  */
 import { fileURLToPath, URL } from 'node:url'
 
@@ -36,7 +36,7 @@ export default defineConfig({
             presets
         }),
         Unocss({
-            include: ['src/options/*', 'src/popup/*', 'src/test/*'],
+            include: ['src/options/*', 'src/popup/*', 'src/dialog/*'],
             presets
         })
     ],
@@ -48,7 +48,7 @@ export default defineConfig({
     build: {
         rollupOptions: {
             input: {
-                test: 'pages/test.html'
+                dialog: 'pages/dialog.html'
             }
         }
     }
