@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "CRXJS Vue Vite Example",
+    "version": "1.0.0",
+    "action": { "default_popup": "popup.html" },
+    "options_page": "options.html",
+    "background": {
+        "service_worker": "src/background.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "/src/content/content.js",
+                "/src/content/webcomponents-bundle.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["pages/test.html"],
+            "matches": ["<all_urls>"]
+        }
+    ]
+}
