@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-05 11:55:03
- * @LastEditTime: 2022-12-09 16:23:01
+ * @LastEditTime: 2022-12-09 16:52:37
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\background.js
