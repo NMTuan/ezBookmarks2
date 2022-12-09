@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 17:17:10
- * @LastEditTime: 2022-12-05 13:45:17
+ * @LastEditTime: 2022-12-09 16:46:39
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content\Content.ce.vue
 -->
 <template>
-    <iframe class="
+    <iframe v-if="src" class="
     fixed inset-0
     w-full h-full
     backdrop-blur-sm
@@ -18,11 +18,39 @@
 <script setup>
 import { ref } from 'vue'
 const src = ref('')
-const srcUrl = chrome.runtime.getURL('pages/dialog.html')
-src.value = srcUrl
+const activeCommand = ref('')   // 记录一下当前执行的命令
 
 document.querySelector('html').style.overflow = 'hidden'
 document.body.style.overflow = 'hidden'
+
+// 处理按键部分
+const handleCommand = (command = '') => {
+    if (command === '') {
+        return
+    }
+    if (src.value === '') {
+        // iframe 没有 src， 则打开 command 对应的地址， 显示 iframe
+        src.value = chrome.runtime.getURL(`pages/dialog.html#/${command}`)
+        activeCommand.value = command
+    } else if (activeCommand.value === command) {
+        // iframe 有 src 并且 当前 command 与 已激活的 command 相同，则清除数据关闭 iframe
+        src.value = ''
+        activeCommand.value = ''
+    }
+}
+
+// 消息处理
+const handleMessage = ({ type = '', action = '', payload = {} }) => {
+    console.log('[content:message]', type, action, payload);
+    if (type === 'command') {
+        handleCommand(action)
+    }
+}
+
+// 消息处理
+chrome.runtime.onMessage.addListener((message) => {
+    handleMessage(message)
+})
 
 </script>
 <style>

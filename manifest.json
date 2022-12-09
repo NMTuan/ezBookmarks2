@@ -27,5 +27,19 @@
             "resources": ["pages/dialog.html"],
             "matches": ["<all_urls>"]
         }
-    ]
+    ],
+    "commands": {
+        "create": {
+            "suggested_key": {
+                "default": "Alt+D"
+            },
+            "description": "添加到书签"
+        },
+        "search": {
+            "suggested_key": {
+                "default": "Alt+F"
+            },
+            "description": "检索书签"
+        }
+    }
 }

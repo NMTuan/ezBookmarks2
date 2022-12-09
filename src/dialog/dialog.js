@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 14:09:20
- * @LastEditTime: 2022-12-05 14:29:12
+ * @LastEditTime: 2022-12-09 16:38:54
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\dialog\dialog.js
@@ -24,6 +24,11 @@ const routes = [
         path: '/create',
         name: 'create',
         component: () => import('./router/create.vue')
+    },
+    {
+        path: '/search',
+        name: 'search',
+        component: () => import('./router/search.vue')
     }
 ]
 
