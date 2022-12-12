@@ -1,11 +1,11 @@
 {
     "manifest_version": 3,
-    "name": "简单书签2",
+    "name": "__MSG_ext_name__",
     "version": "2.0.0",
-    "description": "无压的浏览器书签管理插件",
+    "description": "__MSG_ext_description__",
     "author": "NMTuan",
     "homepage_url": "https://github.com/NMTuan/ezBookmarks2",
-
+    "default_locale": "zh_CN",
     "action": { "default_popup": "popup.html" },
     "options_page": "options.html",
     "background": {
