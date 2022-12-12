@@ -2,21 +2,23 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 17:17:10
- * @LastEditTime: 2022-12-09 17:19:31
+ * @LastEditTime: 2022-12-12 17:01:15
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content\Content.ce.vue
 -->
 <template>
-    <component v-if="activeCommand" :is="componentId"></component>
+    <iframe v-if="src" class="
+    fixed inset-0
+    w-full h-full
+    backdrop-blur-sm
+    " style="z-index:9999" :src="src" frameborder="0">
+    </iframe>
 </template>
 <script setup>
 import { ref } from 'vue'
-import ContentCreate from '../components/ContentCreate.vue'
-import ContentSearch from '../components/ContentSearch.vue'
-
+const src = ref('')
 const activeCommand = ref('')   // 记录一下当前执行的命令
-const componentId = ref('')
 
 // document.querySelector('html').style.overflow = 'hidden'
 // document.body.style.overflow = 'hidden'
@@ -26,21 +28,15 @@ const handleCommand = (command = '') => {
     if (command === '') {
         return
     }
-    if (activeCommand.value === '') {
-        // 如果没有激活指令， 则切换到当前指令对应组件
+    if (src.value === '') {
+        // iframe 没有 src， 则打开 command 对应的地址， 显示 iframe 
+        // src.value = chrome.runtime.getURL(`pages/dialog.html#/${command}`)
+        src.value = chrome.runtime.getURL(`pages/${command}.html`)
         activeCommand.value = command
-        switch (command) {
-            case 'create':
-                componentId.value = ContentCreate
-                break
-            case 'search':
-                componentId.value = ContentSearch
-                break
-        }
     } else if (activeCommand.value === command) {
-        // 如果激活指令与当前指令相同，则清空激活指令，关闭相关组件
+        // iframe 有 src 并且 当前 command 与 已激活的 command 相同，则清除数据关闭 iframe
+        src.value = ''
         activeCommand.value = ''
-        componentId.value = ''
     }
 }
 

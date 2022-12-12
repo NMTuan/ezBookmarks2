@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 10:18:29
- * @LastEditTime: 2022-12-05 13:40:21
+ * @LastEditTime: 2022-12-12 17:25:49
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\vite.config.js
@@ -36,7 +36,7 @@ export default defineConfig({
             presets
         }),
         Unocss({
-            include: ['src/options/*', 'src/popup/*', 'src/dialog/*'],
+            include: ['src/options/*', 'src/popup/*','src/create/*','src/search/*'],
             presets
         })
     ],
@@ -48,7 +48,8 @@ export default defineConfig({
     build: {
         rollupOptions: {
             input: {
-                dialog: 'pages/dialog.html'
+                create: 'pages/create.html',
+                search: 'pages/search.html'
             }
         }
     }

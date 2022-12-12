@@ -24,7 +24,7 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["pages/dialog.html"],
+            "resources": ["pages/create.html", "pages/search.html"],
             "matches": ["<all_urls>"]
         }
     ],
