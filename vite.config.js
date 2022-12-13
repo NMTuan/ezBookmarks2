@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 10:18:29
- * @LastEditTime: 2022-12-12 17:25:49
+ * @LastEditTime: 2022-12-13 08:08:39
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\vite.config.js
@@ -27,6 +27,13 @@ const presets = [
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    optimizeDeps: {
+        esbuildOptions: {
+            define: {
+                global: "globalThis",
+            }
+        }
+    },
     plugins: [
         vue(),
         crx({ manifest }),
