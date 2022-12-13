@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-05 14:27:29
- * @LastEditTime: 2022-12-14 07:32:57
+ * @LastEditTime: 2022-12-14 07:42:15
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\create.vue
@@ -45,6 +45,10 @@ const submit = () => {
         return
     }
     loading.value = true
+    const now = new Date().getTime()
+    formData.value.date_created = now
+    formData.value.date_updated = now
+    formData.value.hits = 0
     db.post(formData.value)
         .then(res => {
             loading.value = false
