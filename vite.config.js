@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 10:18:29
- * @LastEditTime: 2022-12-13 08:08:39
+ * @LastEditTime: 2022-12-13 16:22:38
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\vite.config.js
@@ -16,6 +16,7 @@ import manifest from './manifest.json' // Node 14 & 16
 import Unocss from 'unocss/vite'
 import { presetAttributify, presetUno } from 'unocss'
 import presetIcons from '@unocss/preset-icons'
+import transformerDirectives from '@unocss/transformer-directives'
 import presetRemToPx from '@unocss/preset-rem-to-px'
 
 const presets = [
@@ -24,6 +25,10 @@ const presets = [
     presetIcons(),
     presetRemToPx()
 ]
+
+const transformers = [
+    transformerDirectives(),
+  ]
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -40,11 +45,13 @@ export default defineConfig({
         Unocss({
             mode: 'shadow-dom',
             include: ['src/content/*'],
-            presets
+            presets,
+            transformers
         }),
         Unocss({
             include: ['src/options/*', 'src/popup/*','src/create/*','src/search/*'],
-            presets
+            presets,
+            transformers
         })
     ],
     resolve: {

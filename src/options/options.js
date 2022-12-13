@@ -2,42 +2,20 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 17:17:10
- * @LastEditTime: 2022-12-05 10:58:35
+ * @LastEditTime: 2022-12-13 16:48:51
  * @LastEditors: NMTuan
  * @Description:
- * @FilePath: \base_vite_chrome_extension\src\options\main.js
+ * @FilePath: \ezBookmarks2\src\options\options.js
  */
 import { createApp } from 'vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
-
 import App from './App.vue'
 import 'uno.css'
 import '@unocss/reset/tailwind.css'
-
-const routes = [
-    {
-        path: '/login',
-        name: 'login',
-        component: () => import('./router/login.vue')
-    },
-    {
-        path: '/create',
-        name: 'create',
-        component: () => import('./router/create.vue')
-    },
-    {
-        path: '/search',
-        name: 'search',
-        component: () => import('./router/search.vue')
-    }
-]
-
-const router = createRouter({
-    history: createWebHashHistory(),
-    routes
-})
+import router from './router'
+import db from './db'
 
 const app = createApp(App)
 app.use(router)
+app.provide('db', db)
 app.mount('#app')
 

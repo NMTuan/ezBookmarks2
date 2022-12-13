@@ -304,7 +304,7 @@
   dependencies:
     "@unocss/core" "0.47.6"
 
-"@unocss/transformer-directives@0.47.6":
+"@unocss/transformer-directives@0.47.6", "@unocss/transformer-directives@^0.47.6":
   version "0.47.6"
   resolved "https://registry.npmmirror.com/@unocss/transformer-directives/-/transformer-directives-0.47.6.tgz#ac714d9952c2e217dc94d7839718b94769ab28a5"
   integrity sha512-vRY9bNhE+iNlRpsnky86MtKpRb8ipk3IHvtuRkK5DSjcjn7RGmh5ZpH9pzg39NvbWtRYq5/EN19riIYQHRetnA==
