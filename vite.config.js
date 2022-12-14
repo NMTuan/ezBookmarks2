@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 10:18:29
- * @LastEditTime: 2022-12-13 16:22:38
+ * @LastEditTime: 2022-12-14 10:44:44
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\vite.config.js
@@ -49,7 +49,7 @@ export default defineConfig({
             transformers
         }),
         Unocss({
-            include: ['src/options/*', 'src/popup/*','src/create/*','src/search/*'],
+            include: ['src/options/**/*', 'src/popup/*','src/create/*','src/search/*'],
             presets,
             transformers
         })

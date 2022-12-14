@@ -2,14 +2,30 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-13 16:25:07
- * @LastEditTime: 2022-12-14 07:35:35
+ * @LastEditTime: 2022-12-14 10:45:08
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\index.vue
 -->
 <template>
     <div>
-        index
+        <div>index</div>
+        <table class="text-center w-full bg-purple-200">
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>url</th>
+                <th>tags</th>
+                <th></th>
+            </tr>
+            <tr v-for="item in rows">
+                <td>{{item.id}}</td>
+                <td>{{item.doc.title}}</td>
+                <td>{{item.doc.url}}</td>
+                <td>{{item.doc.tags}}</td>
+                <td></td>
+            </tr>
+        </table>
         <pre>{{ rows }}</pre>
     </div>
 </template>
