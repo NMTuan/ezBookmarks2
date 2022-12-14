@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-13 16:48:13
- * @LastEditTime: 2022-12-14 13:58:41
+ * @LastEditTime: 2022-12-14 14:38:52
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router.js
@@ -19,6 +19,11 @@ const routes = [
         path: '/tags',
         name: 'tags',
         component: () => import('./router/tags.vue')
+    },
+    {
+        path: '/setting',
+        name: 'setting',
+        component: () => import('./router/setting.vue')
     },
     {
         path: '/login',

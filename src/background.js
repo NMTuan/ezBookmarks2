@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-05 11:55:03
- * @LastEditTime: 2022-12-09 16:52:37
+ * @LastEditTime: 2022-12-14 15:02:26
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\background.js
@@ -16,7 +16,7 @@ async function getCurrentTab() {
 
 // 按键处理
 chrome.commands.onCommand.addListener((command) => {
-    console.log('[backgroun:command]', command)
+    console.log('[background:command]', command)
     // 向当前窗口发送消息
     getCurrentTab().then((tab) => {
         chrome.tabs.sendMessage(tab.id, {

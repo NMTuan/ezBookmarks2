@@ -6,6 +6,7 @@
     "author": "NMTuan",
     "homepage_url": "https://github.com/NMTuan/ezBookmarks2",
     "default_locale": "zh_CN",
+    "permissions": ["bookmarks"],
     "action": { "default_popup": "popup.html" },
     "options_page": "options.html",
     "background": {
