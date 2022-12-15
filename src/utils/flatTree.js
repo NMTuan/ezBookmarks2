@@ -2,9 +2,9 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-15 08:27:35
- * @LastEditTime: 2022-12-15 08:30:18
+ * @LastEditTime: 2022-12-15 10:55:29
  * @LastEditors: NMTuan
- * @Description: 把 bookmarks 基于 children 的 object 数据，处理成一维数组
+ * @Description: 把 bookmarks 基于 {title,url,children: []} 数据，处理成一维数组
  * @FilePath: \ezBookmarks2\src\utils\flatTree.js
  */
 
@@ -15,6 +15,7 @@ const flatTree = (children = [], parentTitles = []) => {
         if (item.children && item.children.length > 0) {
             // 如果有 children，把当前 title 插入 parentTitles 中，继续递归
             const titles = [...parentTitles]
+            // 这里过滤掉顶级和一级（书签栏/其它书签）文件夹
             if (item.title && item.id !== '0' && item.parentId !== '0') {
                 titles.push(item.title)
             }
@@ -23,14 +24,17 @@ const flatTree = (children = [], parentTitles = []) => {
         } else if (item.url) {
             // 没有 children 并且有 url，则当一条数据插入 total
             total.push({
+                id: item.id,
+                index: item.index,
+                parentId: item.parentId,
                 title: item.title,
                 url: item.url,
-                date_created: item.dateAdded,
-                date_updated: item.dateAdded,
-                hits: 0,
+                dateAdded: item.dateAdded,
                 parentTitles: [...parentTitles]
             })
         }
         return total
     }, [])
 }
+
+export default flatTree
