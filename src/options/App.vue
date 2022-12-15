@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-14 14:39:52
+ * @LastEditTime: 2022-12-15 07:29:48
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -15,6 +15,7 @@
         <router-link :to="{ name: 'create' }">[create]</router-link>
         <router-link :to="{ name: 'tags' }">[tags]</router-link>
         <router-link :to="{ name: 'setting' }">[setting]</router-link>
+        <router-link :to="{ name: 'import' }">[import]</router-link>
         <hr>
         <div>
             <router-view>

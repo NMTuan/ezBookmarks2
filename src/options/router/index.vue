@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-13 16:25:07
- * @LastEditTime: 2022-12-14 10:45:08
+ * @LastEditTime: 2022-12-15 07:40:44
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\index.vue
@@ -14,15 +14,15 @@
             <tr>
                 <th>id</th>
                 <th>title</th>
-                <th>url</th>
+                <!-- <th>url</th> -->
                 <th>tags</th>
                 <th></th>
             </tr>
             <tr v-for="item in rows">
-                <td>{{item.id}}</td>
-                <td>{{item.doc.title}}</td>
-                <td>{{item.doc.url}}</td>
-                <td>{{item.doc.tags}}</td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.doc.title }}</td>
+                <!-- <td>{{item.doc.url}}</td> -->
+                <td>{{ item.doc.tags }}</td>
                 <td></td>
             </tr>
         </table>
