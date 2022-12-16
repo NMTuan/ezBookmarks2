@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-14 14:38:33
- * @LastEditTime: 2022-12-16 07:23:14
+ * @LastEditTime: 2022-12-16 10:53:33
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\import.vue
@@ -48,6 +48,10 @@ const duplicateData = ref([])   // 重复数据
 ::v-deep {
     button {
         @apply border px-3 py-1 bg-sky-600 text-white;
+    }
+
+    input {
+        @apply border px-3 py-1 w-full
     }
 }
 </style>
