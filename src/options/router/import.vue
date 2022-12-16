@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-14 14:38:33
- * @LastEditTime: 2022-12-15 14:27:28
+ * @LastEditTime: 2022-12-16 07:23:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\import.vue
@@ -24,6 +24,8 @@
         </ImportStep2>
         <hr>
         <p>step3 处理本插件和浏览器书签之间的重复书签</p>
+        <ImportStep3 v-model:treeData="treeData" v-model:flatData="flatData" v-model:duplicateData="duplicateData">
+        </ImportStep3>
         <hr>
         <p>step4 将处理后的数据导入到本插件中。</p>
         <hr>
@@ -33,6 +35,7 @@
 import { ref } from 'vue'
 import ImportStep1 from '../components/ImportStep1.vue';
 import ImportStep2 from '../components/ImportStep2.vue';
+import ImportStep3 from '../components/ImportStep3.vue';
 
 const treeData = ref([])    // bookmakrs tree 数据
 const flatData = ref([]) // 一维数据
