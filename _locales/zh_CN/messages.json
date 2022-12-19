@@ -7,5 +7,8 @@
     },
     "menu_index": {
         "message": "简单书签"
+    },
+    "menu_base": {
+        "message": "base"
     }
 }

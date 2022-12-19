@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 15:10:52
- * @LastEditTime: 2022-12-19 16:11:31
+ * @LastEditTime: 2022-12-19 16:21:44
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\utils\treeRoutes.js
@@ -10,8 +10,8 @@
 import { getI18n } from '../utils'
 
 const files = import.meta.glob('@/options/router/**/*.vue', {
-    eager: true
-    // import: 'default'
+    eager: true,
+    import: 'default'
 })
 
 // 动态加载的文件转换成数组
@@ -20,8 +20,8 @@ const filesArray = Object.keys(files).reduce((total, key) => {
     total.push({
         key, // 原key
         path, // 路径
-        icon: files[key].default.icon || '',
-        sort: files[key].default.sort || 100000,
+        icon: files[key]?.icon || '',
+        sort: files[key]?.sort || 100000,
         level: path.split('/').length, // 层级
         component: files[key] // 文件
     })
