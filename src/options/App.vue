@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-19 13:06:07
+ * @LastEditTime: 2022-12-19 16:46:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -30,8 +30,15 @@
                             class="i-ri-menu-line text-xl cursor-pointer"
                         ></div>
                         <div class="ml-4 flex items-center">
-                            <div v-for="item in route.matched">
+                            <div
+                                v-for="(item, index) in route.matched"
+                                class="flex items-center"
+                            >
                                 {{ item.meta.name }}
+                                <div
+                                    v-if="index !== route.matched.length - 1"
+                                    class="i-ri-arrow-right-s-line mx-2 text-cool-gray-400"
+                                ></div>
                             </div>
                         </div>
                     </div>
@@ -39,12 +46,7 @@
                         <div class="i-ri-github-fill text-2xl"></div>
                     </div>
                 </div>
-                <div class="w-85% max-w-6xl mx-auto mt-16">
-                    layout
-                    <!-- <pre v-for="item in route.matched">
-                        {{ item }}
-                    </pre> -->
-                    <input type="text" class="bg-white border" />
+                <div class="w-85% max-w-6xl mx-auto mt-20">
                     <router-view> </router-view>
                 </div>
             </simplebar>
