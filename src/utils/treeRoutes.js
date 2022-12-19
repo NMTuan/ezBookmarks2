@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 15:10:52
- * @LastEditTime: 2022-12-19 16:21:44
+ * @LastEditTime: 2022-12-19 16:39:20
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\utils\treeRoutes.js
@@ -35,10 +35,10 @@ const flat2tree = (data, level = 1, path = '') => {
     )
     return currentLevelData.reduce((total, item) => {
         const route = {
-            path: `/${item.path.replace(/\/?index$/, '')}`, // 把 每级的首页过滤掉
+            path: `/${item.path.replace(/^index$/, '')}`, // 把 每级的首页过滤掉
             name: item.path.replaceAll('/', '_'),
             meta: {
-                sort: item.sort,
+                sort: item.path.endsWith('index') ? 100 : item.sort, // 如果以 index 结尾，则排序为 100
                 icon: item.icon,
                 name: getI18n(`menu_${item.path.replaceAll('/', '_')}`) // 取 menu_ 开头的翻译
             },

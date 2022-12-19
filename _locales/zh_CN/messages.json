@@ -8,6 +8,9 @@
     "menu_index": {
         "message": "简单书签"
     },
+    "menu_index_index": {
+        "message": "介绍"
+    },
     "menu_base": {
         "message": "base"
     }

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 09:34:10
- * @LastEditTime: 2022-12-19 16:09:09
+ * @LastEditTime: 2022-12-19 16:27:35
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\LayoutMenu.vue
@@ -45,7 +45,7 @@ import { treeRoutes } from '../../utils'
 </script>
 <style scoped lang="scss">
 .menu {
-    @apply leading-none mt-4;
+    @apply leading-none mt-2;
 }
 .title {
     @apply px-4 pt-5 pb-2;
