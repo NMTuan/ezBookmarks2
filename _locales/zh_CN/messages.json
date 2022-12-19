@@ -4,5 +4,8 @@
     },
     "ext_description": {
         "message": "无压的浏览器书签管理插件"
+    },
+    "menu_index": {
+        "message": "首页"
     }
 }

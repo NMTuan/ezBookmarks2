@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-19 10:20:03
+ * @LastEditTime: 2022-12-19 11:15:39
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -27,9 +27,13 @@
                     <div class="flex items-center">
                         <div
                             @click="togglePin"
-                            class="i-ri-menu-line text-xl"
+                            class="i-ri-menu-line text-xl cursor-pointer"
                         ></div>
-                        <div class="ml-4">简单书签</div>
+                        <div class="ml-4 flex items-center">
+                            <div v-for="item in route.matched">
+                                {{ item.meta.name }}
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <div class="i-ri-github-fill text-2xl"></div>
@@ -37,6 +41,9 @@
                 </div>
                 <div class="w-85% max-w-6xl mx-auto mt-16">
                     layout
+                    <!-- <pre v-for="item in route.matched">
+                        {{ item }}
+                    </pre> -->
                     <input type="text" class="bg-white border" />
                     <router-view> </router-view>
                 </div>
@@ -50,8 +57,9 @@ import { pin, togglePin } from './components/LayoutPin'
 import LayoutMenu from './components/LayoutMenu.vue'
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
+import { useRoute } from 'vue-router'
+const route = useRoute()
 console.log('[i18n]', chrome.i18n.getMessage('ext_name'))
-
 const menuClass = computed(() => {
     let classNames = []
     switch (pin.value) {
