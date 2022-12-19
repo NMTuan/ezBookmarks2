@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-13 16:25:07
- * @LastEditTime: 2022-12-15 07:40:44
+ * @LastEditTime: 2022-12-19 16:06:38
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\index.vue
@@ -30,7 +30,8 @@
     </div>
 </template>
 <script setup>
-import { inject, ref, onMounted } from 'vue';
+import { def } from '@vue/shared'
+import { inject, ref, onMounted, defineExpose } from 'vue'
 const rows = ref([])
 const total_rows = ref(0)
 const db = inject('db')
@@ -38,12 +39,20 @@ const db = inject('db')
 onMounted(() => {
     db.allDocs({
         include_docs: true
+    }).then((res) => {
+        // { offset:Number, rows:Array, total_rows:Number}
+        console.log('res', res)
+        rows.value = res.rows
     })
-        .then(res => {
-            // { offset:Number, rows:Array, total_rows:Number}
-            console.log('res', res);
-            rows.value = res.rows
-        })
 })
 
+defineExpose({
+    name: 'aabbcc'
+})
+</script>
+<script>
+export default {
+    icon: 'i-ri-bookmark-3-line',
+    sort: 100
+}
 </script>

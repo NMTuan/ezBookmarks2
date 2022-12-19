@@ -2,29 +2,37 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 09:34:10
- * @LastEditTime: 2022-12-19 11:29:52
+ * @LastEditTime: 2022-12-19 16:09:09
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\LayoutMenu.vue
 -->
 <template>
     <div class="menu">
-        <template v-for="menu in menus">
-            <template v-if="Array.isArray(menu.children)">
-                <div class="title">{{ menu.label }}</div>
+        <template v-for="menu in treeRoutes">
+            <template
+                v-if="Array.isArray(menu.children) && menu.children.length > 0"
+            >
+                <div class="title">
+                    {{ menu.meta.name }}
+                </div>
                 <div v-for="item in menu.children">
-                    <router-link class="link" :to="{ name: item.to }">
+                    <router-link class="link" :to="{ name: item.name }">
                         <div
-                            v-if="item.icon"
-                            :class="`${item.icon} icon`"
+                            v-if="item.meta.icon"
+                            :class="`${item.meta.icon} icon`"
                         ></div>
-                        {{ getI18n(item.label) }}
+                        {{ item.meta.name }}
                     </router-link>
                 </div>
             </template>
             <template v-else>
-                <router-link class="link" :to="{ name: menu.to }">
-                    {{ getI18n(menu.label) }}
+                <router-link class="link" :to="{ name: menu.name }">
+                    <div
+                        v-if="menu.meta.icon"
+                        :class="`${menu.meta.icon} icon`"
+                    ></div>
+                    {{ menu.meta.name }}
                 </router-link>
             </template>
         </template>
@@ -33,44 +41,11 @@
     </div>
 </template>
 <script setup>
-import { ref } from 'vue'
-import { getI18n } from '../../utils'
-
-const menus = ref([
-    {
-        label: 'base',
-        children: [
-            {
-                label: 'menu_index',
-                to: 'index',
-                icon: 'i-ri-bookmark-3-line'
-            }
-        ]
-    },
-    {
-        label: 'adv',
-        children: [{ label: 'menu_login', to: 'login' }]
-    },
-    {
-        label: 'cloud',
-        children: [{ label: 'menu_login', to: 'login' }]
-    },
-    {
-        label: 'other',
-        children: [
-            { label: 'menu_login', to: 'login' },
-            { label: 'menu_search', to: 'search' },
-            { label: 'menu_create', to: 'create' },
-            { label: 'menu_tags', to: 'tags' },
-            { label: 'menu_setting', to: 'setting' },
-            { label: 'menu_import', to: 'import' }
-        ]
-    }
-])
+import { treeRoutes } from '../../utils'
 </script>
 <style scoped lang="scss">
 .menu {
-    @apply leading-none;
+    @apply leading-none mt-4;
 }
 .title {
     @apply px-4 pt-5 pb-2;

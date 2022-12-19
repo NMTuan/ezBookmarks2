@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-19 11:15:39
+ * @LastEditTime: 2022-12-19 13:06:07
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="mr-2">
                         <div class="i-ri-github-fill text-2xl"></div>
                     </div>
                 </div>

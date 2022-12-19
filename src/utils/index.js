@@ -10,5 +10,6 @@
 import flatTree from './flatTree'
 import findDuplicate from './findDuplicate'
 import getI18n from './getI18n'
+import treeRoutes from './treeRoutes'
 
-export { flatTree, findDuplicate, getI18n }
+export { flatTree, findDuplicate, getI18n, treeRoutes }
