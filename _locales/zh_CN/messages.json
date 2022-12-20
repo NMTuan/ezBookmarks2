@@ -16,5 +16,8 @@
     },
     "menu_base_duplicate": {
         "message": "重复书签"
+    },
+    "menu_base_random": {
+        "message": "随机漫步"
     }
 }
