@@ -13,5 +13,8 @@
     },
     "menu_base": {
         "message": "base"
+    },
+    "menu_base_duplicate": {
+        "message": "重复书签"
     }
 }

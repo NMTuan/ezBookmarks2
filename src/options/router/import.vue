@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-14 14:38:33
- * @LastEditTime: 2022-12-19 15:44:31
+ * @LastEditTime: 2022-12-20 07:39:07
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\import.vue
@@ -16,27 +16,15 @@
         <p>注意：重复书签是指网址相同的书签</p>
         <hr />
         <p>step1 读取浏览器书签</p>
-        <ImportStep1
-            v-model:treeData="treeData"
-            v-model:flatData="flatData"
-            v-model:duplicateData="duplicateData"
-        >
+        <ImportStep1 v-model:treeData="treeData" v-model:flatData="flatData" v-model:duplicateData="duplicateData">
         </ImportStep1>
         <hr />
         <p>step2 处理浏览器书签中的重复书签，或跳过处理</p>
-        <ImportStep2
-            v-model:treeData="treeData"
-            v-model:flatData="flatData"
-            v-model:duplicateData="duplicateData"
-        >
+        <ImportStep2 v-model:treeData="treeData" v-model:flatData="flatData" v-model:duplicateData="duplicateData">
         </ImportStep2>
         <hr />
         <p>step3 处理本插件和浏览器书签之间的重复书签</p>
-        <ImportStep3
-            v-model:treeData="treeData"
-            v-model:flatData="flatData"
-            v-model:duplicateData="duplicateData"
-        >
+        <ImportStep3 v-model:treeData="treeData" v-model:flatData="flatData" v-model:duplicateData="duplicateData">
         </ImportStep3>
         <hr />
         <p>step4 将处理后的数据导入到本插件中。</p>
