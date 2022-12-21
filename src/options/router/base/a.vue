@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 13:49:11
- * @LastEditTime: 2022-12-21 10:08:57
+ * @LastEditTime: 2022-12-21 11:17:46
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\a.vue
@@ -11,10 +11,10 @@
     <div>
         <div>base - a</div>
         <div>loading: {{ loading }}</div>
-        <div>
+        <!-- <div>
             baseStore: {{ baseStore.count }}
             <button @click="baseStore.inc">+1</button>
-        </div>
+        </div> -->
         <div v-if="!loading" v-for="item in data">
             <div hover="bg-blue-100">{{ item }}</div>
             <hr />
@@ -24,9 +24,9 @@
 <script setup>
 import { ref } from 'vue'
 import { flatTree } from '../../../utils'
-import { useBaseStore } from '@/store/base'
+// import { useBaseStore } from '@/store/base'
 
-const baseStore = useBaseStore()
+// const baseStore = useBaseStore()
 
 const loading = ref(false)
 const data = ref([])
