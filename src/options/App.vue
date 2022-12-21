@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-19 16:46:14
+ * @LastEditTime: 2022-12-21 14:05:06
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -97,7 +97,7 @@ const mainClass = computed(() => {
 html,
 body,
 #app {
-    @apply text-base bg-cool-gray-50 h-full overflow-hidden;
+    @apply text-base text-cool-gray-800 bg-cool-gray-50 h-full overflow-hidden;
 }
 
 .simplebar {
@@ -105,6 +105,9 @@ body,
         .simplebar-track {
             @apply bg-black/5;
         }
+    }
+    &:focus-visible {
+        @apply outline-none;
     }
 
     .simplebar-scrollbar {
