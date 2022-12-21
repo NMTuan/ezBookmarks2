@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-20 16:42:40
- * @LastEditTime: 2022-12-21 11:27:14
+ * @LastEditTime: 2022-12-21 13:29:22
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\store\base.js
@@ -59,11 +59,35 @@ export const useBaseStore = defineStore('baseStore', () => {
     // 获取浏览器书签
     const fetchChromeBookmarks = () => {
         loading.value = true
-        chrome.bookmarks.getTree((res) => {
+        chrome.bookmarks.getTree(async (res) => {
             bookmarksTree.value = res
-            bookmarksFlat.value = flatTree(res)
+            const flatData = flatTree(res)
+            bookmarksFlat.value = flatData
+            await handleVisits(flatData)
             loading.value = false
         })
+    }
+
+    // 获取访问记录
+    const fetchVisits = (url) => {
+        if (!url) {
+            return ''
+        }
+        return chrome.history
+            .getVisits({
+                url
+            })
+            .then((res) => {
+                return res
+            })
+    }
+
+    // 循环处理
+    const handleVisits = async (data) => {
+        for (let i = 0; i < data.length; i++) {
+            const visits = await fetchVisits(data[i].url)
+            data[i].visits = visits
+        }
     }
 
     fetchChromeBookmarks()

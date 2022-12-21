@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-21 14:05:06
+ * @LastEditTime: 2022-12-21 15:41:58
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -21,8 +21,7 @@
         <div class="flex-1 h-full overflow-hidden" :class="mainClass">
             <simplebar class="simplebar h-full">
                 <div
-                    class="flex items-center justify-between p-4 leading-none bg-cool-gray-50/50 backdrop-blur fixed left-0 top-0 right-0 z-10"
-                    :class="mainClass"
+                    class="flex items-center justify-between p-4 leading-none bg-cool-gray-50/50 backdrop-blur sticky left-0 top-0 right-0 z-10"
                 >
                     <div class="flex items-center">
                         <div
@@ -46,7 +45,7 @@
                         <div class="i-ri-github-fill text-2xl"></div>
                     </div>
                 </div>
-                <div class="w-85% max-w-6xl mx-auto mt-20">
+                <div class="w-85% max-w-6xl mx-auto mt-6">
                     <router-view> </router-view>
                 </div>
             </simplebar>
