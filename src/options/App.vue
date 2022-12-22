@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-22 08:33:45
+ * @LastEditTime: 2022-12-22 11:13:39
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -46,14 +46,16 @@
                     </div>
                 </div>
                 <div class="w-85% max-w-6xl mx-auto mt-6">
-                    <router-view ref="mainView"> </router-view>
+                    <router-view v-slot="{ Component }">
+                        <component :is="Component" ref="mainView"></component>
+                    </router-view>
                 </div>
             </simplebar>
         </div>
     </div>
 </template>
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { pin, togglePin } from './components/LayoutPin'
 import LayoutMenu from './components/LayoutMenu.vue'
 import simplebar from 'simplebar-vue'
@@ -96,18 +98,15 @@ const mainClass = computed(() => {
 })
 
 onMounted(() => {
-    console.log(mainScroll.value)
     mainScroll.value.scrollElement.addEventListener('scroll', () => {
-        console.log('123', mainView.value)
+        if (mainView.value.view?.onScroll) {
+            mainView.value.view.onScroll()
+        }
     })
 })
 
-onBeforeUnmount(() => {
-    mainScroll.value.scrollElement.removeEventListener('scroll')
-})
-
-// routerView.Simplebar.getScrollElement().addEventListener('scroll', () => {
-//     console.log('xxxxxxxxxxxx')
+// onBeforeUnmount(() => {
+//     mainScroll.value.scrollElement.removeEventListener('scroll')
 // })
 </script>
 <style lang="scss">
