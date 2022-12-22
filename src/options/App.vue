@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-22 11:13:39
+ * @LastEditTime: 2022-12-22 14:11:13
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -45,7 +45,7 @@
                         <div class="i-ri-github-fill text-2xl"></div>
                     </div>
                 </div>
-                <div class="w-85% max-w-6xl mx-auto mt-6">
+                <div class="w-85% max-w-6xl mx-auto">
                     <router-view v-slot="{ Component }">
                         <component :is="Component" ref="mainView"></component>
                     </router-view>
@@ -100,7 +100,7 @@ const mainClass = computed(() => {
 onMounted(() => {
     mainScroll.value.scrollElement.addEventListener('scroll', () => {
         if (mainView.value.view?.onScroll) {
-            mainView.value.view.onScroll()
+            mainView.value.view.onScroll(mainScroll.value.scrollElement)
         }
     })
 })
@@ -115,15 +115,15 @@ body,
 #app {
     @apply text-base text-cool-gray-800 bg-cool-gray-50 h-full overflow-hidden;
 }
+*:focus-visible {
+    @apply outline-none;
+}
 
 .simplebar {
     &:hover {
         .simplebar-track {
             @apply bg-black/5;
         }
-    }
-    &:focus-visible {
-        @apply outline-none;
     }
 
     .simplebar-scrollbar {
