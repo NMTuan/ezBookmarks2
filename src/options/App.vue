@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-21 15:41:58
+ * @LastEditTime: 2022-12-22 08:33:45
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -19,7 +19,7 @@
         </div>
         <!-- main -->
         <div class="flex-1 h-full overflow-hidden" :class="mainClass">
-            <simplebar class="simplebar h-full">
+            <simplebar class="simplebar h-full" ref="mainScroll">
                 <div
                     class="flex items-center justify-between p-4 leading-none bg-cool-gray-50/50 backdrop-blur sticky left-0 top-0 right-0 z-10"
                 >
@@ -46,14 +46,14 @@
                     </div>
                 </div>
                 <div class="w-85% max-w-6xl mx-auto mt-6">
-                    <router-view> </router-view>
+                    <router-view ref="mainView"> </router-view>
                 </div>
             </simplebar>
         </div>
     </div>
 </template>
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { pin, togglePin } from './components/LayoutPin'
 import LayoutMenu from './components/LayoutMenu.vue'
 import simplebar from 'simplebar-vue'
@@ -61,6 +61,9 @@ import 'simplebar/dist/simplebar.min.css'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 console.log('[i18n]', chrome.i18n.getMessage('ext_name'))
+
+const mainScroll = ref()
+const mainView = ref()
 const menuClass = computed(() => {
     let classNames = []
     switch (pin.value) {
@@ -91,6 +94,21 @@ const mainClass = computed(() => {
     }
     return classNames
 })
+
+onMounted(() => {
+    console.log(mainScroll.value)
+    mainScroll.value.scrollElement.addEventListener('scroll', () => {
+        console.log('123', mainView.value)
+    })
+})
+
+onBeforeUnmount(() => {
+    mainScroll.value.scrollElement.removeEventListener('scroll')
+})
+
+// routerView.Simplebar.getScrollElement().addEventListener('scroll', () => {
+//     console.log('xxxxxxxxxxxx')
+// })
 </script>
 <style lang="scss">
 html,

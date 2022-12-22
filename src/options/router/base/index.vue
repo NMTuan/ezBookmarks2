@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-21 16:57:41
+ * @LastEditTime: 2022-12-22 08:26:07
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -13,7 +13,7 @@
             <input type="text" v-model="q" />{{ queryData.length }}
         </div>
         <BaseIndexListItem
-            v-for="item in queryData"
+            v-for="item in queryData.slice(0, page * limit)"
             :item="item"
         ></BaseIndexListItem>
         <!-- <div>
@@ -27,13 +27,15 @@
     </div>
 </template>
 <script setup>
-import { ref, computed, onBeforeUpdate, onUpdated } from 'vue'
+import { ref, computed, onBeforeUpdate, onUpdated, defineExpose } from 'vue'
 import { useBaseStore } from '@/store/base'
 import BaseIndexListItem from '@/options/components/BaseIndexListItem.vue'
 const x = ref(0)
 
 const baseStore = useBaseStore()
 const q = ref('')
+const page = ref(1)
+const limit = ref(10)
 
 // 排序后的数据
 const sortedData = computed(() => {
@@ -53,12 +55,23 @@ const queryData = computed(() => {
     }
 })
 
+// 加载分页
+const loadNextPage = () => {
+    console.log('loadNextPage')
+}
+
+const onScroll = () => {
+    console.log('scroll')
+}
+
 onBeforeUpdate(() => {
     x.value = new Date().getTime()
 })
 onUpdated(() => {
     console.log('update time', new Date().getTime() - x.value)
 })
+
+defineExpose({ onScroll })
 </script>
 <script>
 export default {
