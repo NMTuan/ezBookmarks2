@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-22 14:14:33
+ * @LastEditTime: 2022-12-23 08:27:31
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -27,6 +27,7 @@
             <BaseIndexListItem
                 v-for="item in queryData.slice(0, page * limit)"
                 :item="item"
+                :q="q.trim()"
             ></BaseIndexListItem>
         </div>
         <!-- <div>
@@ -64,8 +65,9 @@ const queryData = computed(() => {
     if (q.value.trim() === '') {
         return sortedData.value
     } else {
+        const reg = new RegExp(q.value.trim().split(/\s/).join('|'), 'ig')
         return sortedData.value.filter((item) => {
-            return item.title.indexOf(q.value) >= 0
+            return reg.test(item.title)
         })
     }
 })

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 13:44:47
- * @LastEditTime: 2022-12-21 15:36:46
+ * @LastEditTime: 2022-12-23 08:29:46
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseIndexListItem.vue
@@ -21,8 +21,8 @@
                     hover="underline underline-offset-4"
                     :href="item.url"
                     target="_blank"
+                    v-html="highlight(item.title)"
                 >
-                    {{ item.title }}
                 </a>
                 <div
                     class="i-ri-share-box-line flex-shrink-0 ml-1 text-sm text-cool-gray-300 hidden"
@@ -74,6 +74,27 @@ const props = defineProps({
         default() {
             return {}
         }
+    },
+    q: {
+        type: String,
+        default: ''
     }
 })
+const classNames = 'bg-yellow-200 rounded'
+const highlight = (text) => {
+    const reg = new RegExp(props.q.split(/\s/).join('|'), 'ig')
+    console.log(reg)
+    if (props.q) {
+        return text.replace(reg, (word) => {
+            return `<span class="${classNames}">${word}</span>`
+        })
+    } else {
+        return text
+    }
+}
 </script>
+<style lang="scss" scoped>
+.highlight {
+    @apply bg-yellow-200 rounded;
+}
+</style>
