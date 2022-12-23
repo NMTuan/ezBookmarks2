@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-23 15:18:25
+ * @LastEditTime: 2022-12-23 16:44:45
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -32,6 +32,7 @@
                 class="transition-all"
                 :class="{'bg-cool-gray-200': activeIndex === index}"
                 @mouseenter="handleMouseenter(index)"
+                ref="items"
             ></BaseIndexListItem>
         </div>
         <!-- <div>
@@ -45,7 +46,7 @@
     </div>
 </template>
 <script setup>
-import { ref, computed, defineExpose, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, inject, defineExpose, onMounted, onBeforeUnmount } from 'vue'
 import { throttle } from 'throttle-debounce'
 import { useBaseStore } from '@/store/base'
 import BaseIndexListItem from '@/options/components/BaseIndexListItem.vue'
@@ -56,6 +57,9 @@ const q = ref('')
 const page = ref(1)
 const limit = ref(10)
 const activeIndex = ref(0)
+const items = ref([])
+
+const mainScrollTop = inject('mainScrollTop')
 
 // 排序后的数据
 const sortedData = computed(() => {
@@ -108,18 +112,26 @@ const handleKey = (e) => {
     if (e.key === 'ArrowUp') {
         e.preventDefault();
         if (activeIndex.value > 0) {
-            activeIndex.value --
+            activeIndex.value--
+            keepActiveShow()
         }
     }
     if (e.key === 'ArrowDown') {
         e.preventDefault();
         if (activeIndex.value < queryData.value.length) {
             activeIndex.value ++
+            keepActiveShow()
         }
     }
     if (e.key === 'Enter') {
         window.open(queryData.value[activeIndex.value].url)
     }
+}
+
+// 保持当前项目显示在屏幕中
+const keepActiveShow = () => {
+    const activeEl = items.value[activeIndex.value]
+    console.log(activeEl.el)
 }
 
 onMounted(() => {

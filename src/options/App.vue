@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-22 14:11:13
+ * @LastEditTime: 2022-12-23 15:55:52
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -55,7 +55,7 @@
     </div>
 </template>
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, provide, computed, onMounted } from 'vue'
 import { pin, togglePin } from './components/LayoutPin'
 import LayoutMenu from './components/LayoutMenu.vue'
 import simplebar from 'simplebar-vue'
@@ -97,6 +97,11 @@ const mainClass = computed(() => {
     return classNames
 })
 
+// 滚动主体区域
+const mainScrollTop = (value = 0) => {
+    mainScroll.value.scrollElement.scrollTop = value
+}
+
 onMounted(() => {
     mainScroll.value.scrollElement.addEventListener('scroll', () => {
         if (mainView.value.view?.onScroll) {
@@ -105,9 +110,8 @@ onMounted(() => {
     })
 })
 
-// onBeforeUnmount(() => {
-//     mainScroll.value.scrollElement.removeEventListener('scroll')
-// })
+provide('mainScrollTop', mainScrollTop)
+
 </script>
 <style lang="scss">
 html,

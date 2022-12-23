@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 13:44:47
- * @LastEditTime: 2022-12-23 14:51:20
+ * @LastEditTime: 2022-12-23 16:44:31
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseIndexListItem.vue
 -->
 <template>
-    <div class="p-3 border-b group">
+    <div ref="el" class="p-3 border-b group">
         <div class="flex items-center">
             <img
                 :src="getFaviconUrl(item.url)"
@@ -67,6 +67,7 @@
     </div>
 </template>
 <script setup>
+import { ref, defineExpose } from 'vue';
 import { getFaviconUrl, formatTimestamp } from '../../utils'
 
 const props = defineProps({
@@ -86,6 +87,7 @@ const props = defineProps({
     // }
 })
 
+const el = ref()
 // const emits = defineEmits(['update:activeIndex'])
 const classNames = 'bg-yellow-200 rounded'
 const highlight = (text) => {
@@ -98,6 +100,8 @@ const highlight = (text) => {
         return text
     }
 }
+
+defineExpose({el})
 </script>
 <style lang="scss" scoped>
 .highlight {
