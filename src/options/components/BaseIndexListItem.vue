@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 13:44:47
- * @LastEditTime: 2022-12-23 08:29:46
+ * @LastEditTime: 2022-12-23 14:35:25
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseIndexListItem.vue
@@ -60,7 +60,8 @@
             <!-- 网址 -->
             <div class="flex items-center overflow-hidden">
                 <div class="i-ri-links-line mr-2"></div>
-                <div class="truncate">{{ item.url }}</div>
+                <div class="truncate" v-html="highlight(item.url.replace(/^https?\:\/\//, ''))">
+                </div>
             </div>
         </div>
     </div>
@@ -83,7 +84,6 @@ const props = defineProps({
 const classNames = 'bg-yellow-200 rounded'
 const highlight = (text) => {
     const reg = new RegExp(props.q.split(/\s/).join('|'), 'ig')
-    console.log(reg)
     if (props.q) {
         return text.replace(reg, (word) => {
             return `<span class="${classNames}">${word}</span>`

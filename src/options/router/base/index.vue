@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-23 08:27:31
+ * @LastEditTime: 2022-12-23 14:32:28
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -67,7 +67,7 @@ const queryData = computed(() => {
     } else {
         const reg = new RegExp(q.value.trim().split(/\s/).join('|'), 'ig')
         return sortedData.value.filter((item) => {
-            return reg.test(item.title)
+            return reg.test(item.title) || reg.test(item.url.replace(/^https?\:\/\//ig, ''))
         })
     }
 })
