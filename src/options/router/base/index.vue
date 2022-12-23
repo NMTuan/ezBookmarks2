@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-23 14:32:28
+ * @LastEditTime: 2022-12-23 15:18:25
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -25,9 +25,13 @@
 
         <div v-if="!baseStore.loading">
             <BaseIndexListItem
-                v-for="item in queryData.slice(0, page * limit)"
+                v-for="(item,index) in queryData.slice(0, page * limit)"
                 :item="item"
                 :q="q.trim()"
+                v-model:activeIndex="activeIndex"
+                class="transition-all"
+                :class="{'bg-cool-gray-200': activeIndex === index}"
+                @mouseenter="handleMouseenter(index)"
             ></BaseIndexListItem>
         </div>
         <!-- <div>
@@ -41,7 +45,7 @@
     </div>
 </template>
 <script setup>
-import { ref, computed, defineExpose, onMounted } from 'vue'
+import { ref, computed, defineExpose, onMounted, onBeforeUnmount } from 'vue'
 import { throttle } from 'throttle-debounce'
 import { useBaseStore } from '@/store/base'
 import BaseIndexListItem from '@/options/components/BaseIndexListItem.vue'
@@ -51,6 +55,7 @@ const input = ref('')
 const q = ref('')
 const page = ref(1)
 const limit = ref(10)
+const activeIndex = ref(0)
 
 // 排序后的数据
 const sortedData = computed(() => {
@@ -92,9 +97,39 @@ const onScroll = (e) => {
     }
 }
 
+// 鼠标滑过
+const handleMouseenter = (index) => {
+    activeIndex.value = index
+}
+
+// 处理按键事件
+const handleKey = (e) => {
+    console.log('key', e.key)
+    if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (activeIndex.value > 0) {
+            activeIndex.value --
+        }
+    }
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (activeIndex.value < queryData.value.length) {
+            activeIndex.value ++
+        }
+    }
+    if (e.key === 'Enter') {
+        window.open(queryData.value[activeIndex.value].url)
+    }
+}
+
 onMounted(() => {
     input.value.focus()
+    window.addEventListener('keydown', handleKey)
 })
+
+onBeforeUnmount(() => [
+    window.removeEventListener('keydown', handleKey)
+])
 
 defineExpose({ onScroll })
 </script>

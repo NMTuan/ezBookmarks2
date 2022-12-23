@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 13:44:47
- * @LastEditTime: 2022-12-23 14:35:25
+ * @LastEditTime: 2022-12-23 14:51:20
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseIndexListItem.vue
 -->
 <template>
-    <div class="p-3 border-b group" hover="bg-cool-gray-100">
+    <div class="p-3 border-b group">
         <div class="flex items-center">
             <img
                 :src="getFaviconUrl(item.url)"
@@ -79,8 +79,14 @@ const props = defineProps({
     q: {
         type: String,
         default: ''
-    }
+    },
+    // activeIndex: {
+    //     type: Number,
+    //     default: 0
+    // }
 })
+
+// const emits = defineEmits(['update:activeIndex'])
 const classNames = 'bg-yellow-200 rounded'
 const highlight = (text) => {
     const reg = new RegExp(props.q.split(/\s/).join('|'), 'ig')
