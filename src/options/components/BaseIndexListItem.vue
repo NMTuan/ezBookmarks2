@@ -2,72 +2,82 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 13:44:47
- * @LastEditTime: 2022-12-23 16:44:31
+ * @LastEditTime: 2022-12-26 11:22:58
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseIndexListItem.vue
 -->
 <template>
-    <div ref="el" class="p-3 border-b group">
-        <div class="flex items-center">
-            <img
-                :src="getFaviconUrl(item.url)"
-                alt=""
-                class="block w-6 h-6 flex-shrink-0 mr-3"
-            />
-            <div class="flex-1 flex items-start overflow-hidden">
-                <a
-                    class="truncate"
-                    hover="underline underline-offset-4"
-                    :href="item.url"
-                    target="_blank"
-                    v-html="highlight(item.title)"
-                >
-                </a>
-                <div
-                    class="i-ri-share-box-line flex-shrink-0 ml-1 text-sm text-cool-gray-300 hidden"
-                    group-hover="block"
-                ></div>
-            </div>
-        </div>
-        <div class="flex mt-2 pl-9 text-cool-gray-400 text-sm">
-            <!-- 目录 -->
-            <div
-                v-if="item.parentTitles?.length > 0"
-                class="flex-shrink-0 flex items-center mr-4"
-            >
-                <div class="i-ri-folder-line mr-2"></div>
-                {{ item.parentTitles.join(' - ') }}
-            </div>
-            <!-- 访问量 -->
-            <div
-                v-if="item.visits?.length > 0"
-                class="flex-shrink-0 flex items-center mr-4"
-            >
-                <div class="i-ri-eye-line mr-2"></div>
-                {{ item.visits.length }} -
-                {{
-                    formatTimestamp(
-                        item.visits[item.visits.length - 1].visitTime
-                    )
-                }}
-            </div>
-            <!-- 创建时间 -->
-            <div class="flex-shrink-0 flex items-center mr-4">
-                <div class="i-ri-add-box-line mr-2"></div>
-                {{ formatTimestamp(item.dateAdded) }}
-            </div>
-            <!-- 网址 -->
-            <div class="flex items-center overflow-hidden">
-                <div class="i-ri-links-line mr-2"></div>
-                <div class="truncate" v-html="highlight(item.url.replace(/^https?\:\/\//, ''))">
+    <div ref="el" class="flex items-end p-3 border-b group">
+        <div class="flex-1 overflow-hidden">
+            <div class="flex items-center">
+                <img
+                    :src="getFaviconUrl(item.url)"
+                    alt=""
+                    class="block w-6 h-6 flex-shrink-0 mr-3"
+                />
+                <div class="flex-1 flex items-start overflow-hidden">
+                    <a
+                        class="truncate"
+                        hover="underline underline-offset-4"
+                        :href="item.url"
+                        target="_blank"
+                        v-html="highlight(item.title)"
+                    >
+                    </a>
+                    <div
+                        class="i-ri-share-box-line flex-shrink-0 ml-1 text-sm text-cool-gray-300 hidden"
+                        group-hover="block"
+                    ></div>
                 </div>
             </div>
+            <div class="flex mt-2 pl-9 text-cool-gray-400 text-sm">
+                <!-- 目录 -->
+                <div
+                    v-if="item.parentTitles?.length > 0"
+                    class="flex-shrink-0 flex items-center mr-4"
+                >
+                    <div class="i-ri-folder-line mr-2"></div>
+                    {{ item.parentTitles.join(' - ') }}
+                </div>
+                <!-- 访问量 -->
+                <div
+                    v-if="item.visits?.length > 0"
+                    class="flex-shrink-0 flex items-center mr-4"
+                >
+                    <div class="i-ri-eye-line mr-2"></div>
+                    {{ item.visits.length }} -
+                    {{
+                        formatTimestamp(
+                            item.visits[item.visits.length - 1].visitTime
+                        )
+                    }}
+                </div>
+                <!-- 创建时间 -->
+                <div class="flex-shrink-0 flex items-center mr-4">
+                    <div class="i-ri-add-box-line mr-2"></div>
+                    {{ formatTimestamp(item.dateAdded) }}
+                </div>
+                <!-- 网址 -->
+                <div class="flex items-center overflow-hidden">
+                    <div class="i-ri-links-line mr-2"></div>
+                    <div
+                        class="truncate"
+                        v-html="
+                            highlight(item.url.replace(/^https?\:\/\//, ''))
+                        "
+                    ></div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden items-center text-cool-gray-300" group-hover="flex">
+            <!-- ENTER -->
+            <div class="i-icon-park-solid:enter-key text-xl ml-2"></div>
         </div>
     </div>
 </template>
 <script setup>
-import { ref, defineExpose } from 'vue';
+import { ref, defineExpose } from 'vue'
 import { getFaviconUrl, formatTimestamp } from '../../utils'
 
 const props = defineProps({
@@ -80,7 +90,7 @@ const props = defineProps({
     q: {
         type: String,
         default: ''
-    },
+    }
     // activeIndex: {
     //     type: Number,
     //     default: 0
@@ -101,7 +111,7 @@ const highlight = (text) => {
     }
 }
 
-defineExpose({el})
+defineExpose({ el })
 </script>
 <style lang="scss" scoped>
 .highlight {
