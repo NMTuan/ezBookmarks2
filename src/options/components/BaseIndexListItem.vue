@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 13:44:47
- * @LastEditTime: 2022-12-26 11:22:58
+ * @LastEditTime: 2022-12-26 12:59:28
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseIndexListItem.vue
 -->
 <template>
-    <div ref="el" class="flex items-end p-3 border-b group">
+    <div ref="el" class="flex items-end p-3 border-b">
         <div class="flex-1 overflow-hidden">
             <div class="flex items-center">
                 <img
@@ -70,7 +70,10 @@
                 </div>
             </div>
         </div>
-        <div class="hidden items-center text-cool-gray-300" group-hover="flex">
+        <div
+            class="items-center text-cool-gray-300"
+            :class="{ flex: active, hidden: !active }"
+        >
             <!-- ENTER -->
             <div class="i-icon-park-solid:enter-key text-xl ml-2"></div>
         </div>
@@ -90,15 +93,14 @@ const props = defineProps({
     q: {
         type: String,
         default: ''
+    },
+    active: {
+        type: Boolean,
+        default: false
     }
-    // activeIndex: {
-    //     type: Number,
-    //     default: 0
-    // }
 })
 
 const el = ref()
-// const emits = defineEmits(['update:activeIndex'])
 const classNames = 'bg-yellow-200 rounded'
 const highlight = (text) => {
     const reg = new RegExp(props.q.split(/\s/).join('|'), 'ig')

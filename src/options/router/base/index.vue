@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-26 10:29:57
+ * @LastEditTime: 2022-12-26 13:40:12
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -18,8 +18,21 @@
                     v-model="q"
                 />
             </div>
-            <div class="py-2 px-3 text-xs">
-                共{{ q ? '找到' : '' }} {{ queryData.length }} 个书签：
+            <div
+                class="flex item-center justify-between text-cool-gray-400 px-3 py-3 text-sm"
+            >
+                <div class="">
+                    共{{ q ? '找到' : '' }} {{ queryData.length }} 个书签：
+                </div>
+                <div class="flex items-center">
+                    Ctrl+Enter search in
+                    <div
+                        class="flex items-center underline ml-2 cursor-pointer"
+                    >
+                        baidu.com
+                        <div class="i-ri-arrow-down-s-fill"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -28,7 +41,7 @@
                 v-for="(item, index) in queryData.slice(0, page * limit)"
                 :item="item"
                 :q="q.trim()"
-                v-model:activeIndex="activeIndex"
+                :active="activeIndex === index"
                 class="transition-all"
                 :class="{ 'bg-cool-gray-200': activeIndex === index }"
                 @mouseenter="handleMouseenter(index)"
@@ -52,7 +65,8 @@ import {
     inject,
     defineExpose,
     onMounted,
-    onBeforeUnmount
+    onBeforeUnmount,
+    watch
 } from 'vue'
 import { throttle } from 'throttle-debounce'
 import { useBaseStore } from '@/store/base'
@@ -67,7 +81,6 @@ const limit = ref(10)
 const activeIndex = ref(0)
 const items = ref([])
 
-const mainScrollTop = inject('mainScrollTop')
 const mainScroll = inject('mainScroll')
 
 // 排序后的数据
@@ -137,7 +150,15 @@ const handleKey = (e) => {
         }
     }
     if (e.key === 'Enter') {
-        window.open(queryData.value[activeIndex.value].url)
+        if (e.ctrlKey) {
+            chrome.tabs.create({
+                url: `https://baidu.com/s?wd=${q.value}`
+            })
+        } else {
+            chrome.tabs.create({
+                url: queryData.value[activeIndex.value].url
+            })
+        }
     }
 }
 
@@ -174,6 +195,10 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => [window.removeEventListener('keydown', handleKey)])
+
+watch(q, () => {
+    activeIndex.value = 0
+})
 
 defineExpose({ onScroll })
 </script>
