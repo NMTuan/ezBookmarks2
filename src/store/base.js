@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-20 16:42:40
- * @LastEditTime: 2022-12-21 13:29:22
+ * @LastEditTime: 2022-12-26 14:38:22
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\store\base.js
@@ -64,6 +64,7 @@ export const useBaseStore = defineStore('baseStore', () => {
             const flatData = flatTree(res)
             bookmarksFlat.value = flatData
             await handleVisits(flatData)
+            handleSort()
             loading.value = false
         })
     }
@@ -88,6 +89,17 @@ export const useBaseStore = defineStore('baseStore', () => {
             const visits = await fetchVisits(data[i].url)
             data[i].visits = visits
         }
+    }
+
+    // 排序
+    const handleSort = () => {
+        bookmarksFlat.value.sort((a, b) => {
+            // 有访问时间的, 拿最后一次访问时间做比较
+            // 没有访问时间的, 拿创建时间做比较
+            const aDate = a.visits.length > 0 ? a.visits[a.visits.length -1].visitTime : a.dateAdded
+            const bDate = b.visits.length > 0 ? b.visits[b.visits.length -1].visitTime : b.dateAdded
+            return bDate - aDate
+        })
     }
 
     fetchChromeBookmarks()

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-15 08:27:35
- * @LastEditTime: 2022-12-15 10:55:29
+ * @LastEditTime: 2022-12-26 14:01:56
  * @LastEditors: NMTuan
  * @Description: 把 bookmarks 基于 {title,url,children: []} 数据，处理成一维数组
  * @FilePath: \ezBookmarks2\src\utils\flatTree.js
@@ -30,7 +30,8 @@ const flatTree = (children = [], parentTitles = []) => {
                 title: item.title,
                 url: item.url,
                 dateAdded: item.dateAdded,
-                parentTitles: [...parentTitles]
+                parentTitles: [...parentTitles],
+                visits: []
             })
         }
         return total

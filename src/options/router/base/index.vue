@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-26 13:40:12
+ * @LastEditTime: 2022-12-26 14:51:21
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -81,23 +81,16 @@ const limit = ref(10)
 const activeIndex = ref(0)
 const items = ref([])
 
+const mainScrollTop = inject('mainScrollTop')
 const mainScroll = inject('mainScroll')
-
-// 排序后的数据
-const sortedData = computed(() => {
-    return [...baseStore.bookmarksFlat].sort((a, b) => {
-        return b.dateAdded - a.dateAdded
-    })
-})
 
 // 查询后的数据
 const queryData = computed(() => {
-    page.value = 1
     if (q.value.trim() === '') {
-        return sortedData.value
+        return baseStore.bookmarksFlat
     } else {
         const reg = new RegExp(q.value.trim().split(/\s/).join('|'), 'ig')
-        return sortedData.value.filter((item) => {
+        return baseStore.bookmarksFlat.filter((item) => {
             return (
                 reg.test(item.title) ||
                 reg.test(item.url.replace(/^https?\:\/\//gi, ''))
@@ -197,7 +190,10 @@ onMounted(() => {
 onBeforeUnmount(() => [window.removeEventListener('keydown', handleKey)])
 
 watch(q, () => {
-    activeIndex.value = 0
+    // 搜索条件改变时
+    mainScrollTop(0) // 滚动到页面最上方
+    page.value = 1 // 分页为 1
+    activeIndex.value = 0 // 高亮为 0
 })
 
 defineExpose({ onScroll })
