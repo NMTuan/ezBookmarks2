@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-26 14:51:21
+ * @LastEditTime: 2022-12-26 16:34:13
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -26,12 +26,10 @@
                 </div>
                 <div class="flex items-center">
                     Ctrl+Enter search in
-                    <div
-                        class="flex items-center underline ml-2 cursor-pointer"
-                    >
-                        baidu.com
-                        <div class="i-ri-arrow-down-s-fill"></div>
-                    </div>
+
+                    <base-index-search-engine
+                        ref="searchEngine"
+                    ></base-index-search-engine>
                 </div>
             </div>
         </div>
@@ -48,14 +46,6 @@
                 ref="items"
             ></BaseIndexListItem>
         </div>
-        <!-- <div>
-            <pre
-                v-for="item in queryData"
-                class="overflow-hidden"
-                hover="bg-blue-100"
-                >{{ item }}</pre
-            >
-        </div> -->
     </div>
 </template>
 <script setup>
@@ -71,6 +61,7 @@ import {
 import { throttle } from 'throttle-debounce'
 import { useBaseStore } from '@/store/base'
 import BaseIndexListItem from '@/options/components/BaseIndexListItem.vue'
+import BaseIndexSearchEngine from '../../components/BaseIndexSearchEngine.vue'
 
 const correction = 100 // 修正值，滚动到距离边缘多少px时触发
 const baseStore = useBaseStore()
@@ -80,6 +71,7 @@ const page = ref(1)
 const limit = ref(10)
 const activeIndex = ref(0)
 const items = ref([])
+const searchEngine = ref('')
 
 const mainScrollTop = inject('mainScrollTop')
 const mainScroll = inject('mainScroll')
@@ -144,9 +136,7 @@ const handleKey = (e) => {
     }
     if (e.key === 'Enter') {
         if (e.ctrlKey) {
-            chrome.tabs.create({
-                url: `https://baidu.com/s?wd=${q.value}`
-            })
+            searchEngine.value.search(q.value)
         } else {
             chrome.tabs.create({
                 url: queryData.value[activeIndex.value].url

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-26 09:55:16
+ * @LastEditTime: 2022-12-26 16:24:24
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -112,7 +112,6 @@ onMounted(() => {
 
 provide('mainScrollTop', mainScrollTop)
 provide('mainScroll', mainScroll)
-
 </script>
 <style lang="scss">
 html,
@@ -133,7 +132,7 @@ body,
 
     .simplebar-scrollbar {
         &:before {
-            @apply bg-cool-gray-400;
+            @apply bg-black/50;
         }
     }
 }
