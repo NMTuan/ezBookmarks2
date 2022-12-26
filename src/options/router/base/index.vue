@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-23 16:44:45
+ * @LastEditTime: 2022-12-26 10:23:34
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -25,12 +25,12 @@
 
         <div v-if="!baseStore.loading">
             <BaseIndexListItem
-                v-for="(item,index) in queryData.slice(0, page * limit)"
+                v-for="(item, index) in queryData.slice(0, page * limit)"
                 :item="item"
                 :q="q.trim()"
                 v-model:activeIndex="activeIndex"
                 class="transition-all"
-                :class="{'bg-cool-gray-200': activeIndex === index}"
+                :class="{ 'bg-cool-gray-200': activeIndex === index }"
                 @mouseenter="handleMouseenter(index)"
                 ref="items"
             ></BaseIndexListItem>
@@ -46,11 +46,19 @@
     </div>
 </template>
 <script setup>
-import { ref, computed, inject, defineExpose, onMounted, onBeforeUnmount } from 'vue'
+import {
+    ref,
+    computed,
+    inject,
+    defineExpose,
+    onMounted,
+    onBeforeUnmount
+} from 'vue'
 import { throttle } from 'throttle-debounce'
 import { useBaseStore } from '@/store/base'
 import BaseIndexListItem from '@/options/components/BaseIndexListItem.vue'
 
+const correction = 100 // 修正值，滚动到距离边缘多少px时触发
 const baseStore = useBaseStore()
 const input = ref('')
 const q = ref('')
@@ -60,6 +68,7 @@ const activeIndex = ref(0)
 const items = ref([])
 
 const mainScrollTop = inject('mainScrollTop')
+const mainScroll = inject('mainScroll')
 
 // 排序后的数据
 const sortedData = computed(() => {
@@ -76,7 +85,10 @@ const queryData = computed(() => {
     } else {
         const reg = new RegExp(q.value.trim().split(/\s/).join('|'), 'ig')
         return sortedData.value.filter((item) => {
-            return reg.test(item.title) || reg.test(item.url.replace(/^https?\:\/\//ig, ''))
+            return (
+                reg.test(item.title) ||
+                reg.test(item.url.replace(/^https?\:\/\//gi, ''))
+            )
         })
     }
 })
@@ -96,7 +108,7 @@ const throttleLoadNextPage = throttle(300, () => {
 
 // 供父组件中滚动监听调用
 const onScroll = (e) => {
-    if (e.scrollHeight - e.scrollTop - e.clientHeight <= 100) {
+    if (e.scrollHeight - e.scrollTop - e.clientHeight <= correction) {
         throttleLoadNextPage()
     }
 }
@@ -108,19 +120,20 @@ const handleMouseenter = (index) => {
 
 // 处理按键事件
 const handleKey = (e) => {
-    console.log('key', e.key)
+    console.log('key', e.key, e)
+
     if (e.key === 'ArrowUp') {
-        e.preventDefault();
+        e.preventDefault()
         if (activeIndex.value > 0) {
             activeIndex.value--
-            keepActiveShow()
+            keepActiveCanBeSee()
         }
     }
     if (e.key === 'ArrowDown') {
-        e.preventDefault();
+        e.preventDefault()
         if (activeIndex.value < queryData.value.length) {
-            activeIndex.value ++
-            keepActiveShow()
+            activeIndex.value++
+            keepActiveCanBeSee()
         }
     }
     if (e.key === 'Enter') {
@@ -129,9 +142,27 @@ const handleKey = (e) => {
 }
 
 // 保持当前项目显示在屏幕中
-const keepActiveShow = () => {
-    const activeEl = items.value[activeIndex.value]
-    console.log(activeEl.el)
+const keepActiveCanBeSee = () => {
+    const activeEl = items.value[activeIndex.value].el
+
+    if (activeIndex.value === 0) {
+        // 顶
+        mainScroll.value.scrollElement.scrollTop = 0
+    } else if (
+        activeEl.offsetTop + activeEl.clientHeight + correction >
+        mainScroll.value.scrollElement.scrollTop + window.innerHeight
+    ) {
+        // 下边
+        mainScroll.value.scrollElement.scrollTop =
+            mainScroll.value.scrollElement.scrollTop + activeEl.clientHeight
+    } else if (
+        activeEl.offsetTop - correction <
+        mainScroll.value.scrollElement.scrollTop
+    ) {
+        // 上边
+        mainScroll.value.scrollElement.scrollTop =
+            mainScroll.value.scrollElement.scrollTop - activeEl.clientHeight
+    }
 }
 
 onMounted(() => {
@@ -139,9 +170,7 @@ onMounted(() => {
     window.addEventListener('keydown', handleKey)
 })
 
-onBeforeUnmount(() => [
-    window.removeEventListener('keydown', handleKey)
-])
+onBeforeUnmount(() => [window.removeEventListener('keydown', handleKey)])
 
 defineExpose({ onScroll })
 </script>
