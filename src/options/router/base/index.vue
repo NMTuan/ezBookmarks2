@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-26 10:23:34
+ * @LastEditTime: 2022-12-26 10:29:57
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -154,14 +154,17 @@ const keepActiveCanBeSee = () => {
     ) {
         // 下边
         mainScroll.value.scrollElement.scrollTop =
-            mainScroll.value.scrollElement.scrollTop + activeEl.clientHeight
+            activeEl.offsetTop +
+            activeEl.clientHeight -
+            window.innerHeight +
+            correction
     } else if (
         activeEl.offsetTop - correction <
         mainScroll.value.scrollElement.scrollTop
     ) {
         // 上边
         mainScroll.value.scrollElement.scrollTop =
-            mainScroll.value.scrollElement.scrollTop - activeEl.clientHeight
+            activeEl.offsetTop - activeEl.clientHeight - correction
     }
 }
 
