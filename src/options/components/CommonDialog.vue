@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-26 15:57:51
- * @LastEditTime: 2022-12-26 16:44:25
+ * @LastEditTime: 2022-12-27 10:12:09
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezBookmarks2\src\options\components\commonDialog.vue
+ * @FilePath: \ezBookmarks2\src\options\components\CommonDialog.vue
 -->
 <template>
     <teleport to="#dialog">
@@ -52,12 +52,20 @@ const props = defineProps({
     show: {
         type: Boolean,
         default: false
+    },
+    beforeClose: {
+        type: Function,
+        default: null
     }
 })
 const emits = defineEmits(['update:show'])
 
 const handleClose = () => {
-    emits('update:show', false)
+    if (typeof props.beforeClose === 'function') {
+        props.beforeClose()
+    } else {
+        emits('update:show', false)
+    }
 }
 
 const handleClickMask = () => {
