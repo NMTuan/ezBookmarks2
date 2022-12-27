@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-26 16:24:24
+ * @LastEditTime: 2022-12-27 11:01:54
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -28,7 +28,7 @@
                             @click="togglePin"
                             class="i-ri-menu-line text-xl cursor-pointer"
                         ></div>
-                        <div class="ml-4 flex items-center">
+                        <div class="ml-4 flex items-center capitalize">
                             <div
                                 v-for="(item, index) in route.matched"
                                 class="flex items-center"
@@ -42,7 +42,14 @@
                         </div>
                     </div>
                     <div class="mr-2">
-                        <div class="i-ri-github-fill text-2xl"></div>
+                        <div
+                            class="i-ri-github-fill text-2xl cursor-pointer"
+                            @click="
+                                openNewTab(
+                                    'https://github.com/NMTuan/ezBookmarks2'
+                                )
+                            "
+                        ></div>
                     </div>
                 </div>
                 <div class="w-85% max-w-6xl mx-auto">
@@ -100,6 +107,12 @@ const mainClass = computed(() => {
 // 滚动主体区域
 const mainScrollTop = (value = 0) => {
     mainScroll.value.scrollElement.scrollTop = value
+}
+
+const openNewTab = (url) => {
+    if (url) {
+        chrome.tabs.create({ url })
+    }
 }
 
 onMounted(() => {
