@@ -2,95 +2,63 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 13:20:24
- * @LastEditTime: 2022-12-20 08:00:35
+ * @LastEditTime: 2022-12-27 16:51:29
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\duplicate.vue
 -->
 <template>
-    <div>
-        <div>loading: false</div>
-        <div>您的浏览器书签中，有 {{ duplicateData.length }} 条网址相同的书签</div>
-        <div class="bg-emerald-100 p-4 flex">
-            <div v-for="item in current.data" class="flex-1 overflow-hidden" @click="handleChoose(item.id)">
-                <div>{{ item.id }}</div>
-                <div>标题：{{ item.title }}</div>
-                <div>创建时间：{{ formatTimestamp(item.dateAdded) }}</div>
-                <div>所属文件夹：{{ item.parentTitles.join(' / ') || '-' }}</div>
-                <div>{{ item.id === chooseId ? '√' : '' }}</div>
-            </div>
-        </div>
-        <div>注意：您的选择将直接修改浏览器中的书签</div>
-        <div class="bg-emerald-200">
-            <div @click="handleNext">都保留（跳过）</div>
-            <div @click="removeAll">都不要</div>
-            <div @click="submitChoose">保留已选择（{{ chooseId }}）</div>
+    <div class="relative">
+        <div
+            class="flex item-center justify-between text-cool-gray-400 px-3 py-3 text-sm"
+        >
+            找到 {{ baseStore.bookmarksDuplicate.length }} 条重复书签
         </div>
 
-        <!-- <div>
-            <pre>{{ duplicateData }}</pre>
-        </div> -->
+        <div v-if="!baseStore.loading">
+            <base-duplicate-list
+                v-for="item in baseStore.bookmarksDuplicate.slice(
+                    0,
+                    page * limit
+                )"
+                :item="item"
+            ></base-duplicate-list>
+        </div>
     </div>
 </template>
 <script setup>
-import { ref, computed } from 'vue'
-import { flatTree, findDuplicate, formatTimestamp } from '../../../utils';
+import { ref } from 'vue'
+import { throttle } from 'throttle-debounce'
+import { useBaseStore } from '@/store/base'
+import BaseDuplicateList from '../../components/BaseDuplicateList.vue'
 
-const loading = ref(false)
-const duplicateData = ref([])
-const chooseId = ref('')
+const baseStore = useBaseStore()
 
-const current = computed(() => {
-    return duplicateData.value[0] || { data: {} }
-})
+const correction = 100 // 修正值，滚动到距离边缘多少px时触发
+const page = ref(1)
+const limit = ref(10)
 
-const readChromeBookmarks = () => {
-    loading.value = true
-    chrome.bookmarks.getTree((res) => {
-        // console.log(res);
-        let data = flatTree(res)
-        duplicateData.value = findDuplicate(data)
-        loading.value = false
-    })
-}
-
-const handleChoose = (id) => {
-    chooseId.value = id
-}
-
-// 处理下一个（跳过）
-const handleNext = () => {
-    duplicateData.value.shift()
-}
-
-// 提交选择
-const submitChoose = async () => {
-    if (!chooseId.value) {
+// 加载分页
+const loadNextPage = () => {
+    if (limit.value * page.value >= baseStore.bookmarksDuplicate.length) {
         return
     }
-
-    for (let i = 0; i < current.value.data.length; i++) {
-        if (current.value.data[i].id !== chooseId.value) {
-            await chrome.bookmarks.remove(current.value.data[i].id)
-        }
-    }
-    // 从重复数据中把当前条目删掉
-    chooseId.value = ''
+    page.value++
 }
 
-// 全删除
-const removeAll = async () => {
-    for (let i = 0; i < current.value.data.length; i++) {
-        await chrome.bookmarks.remove(current.value.data[i].id)
+// 防抖，单位时间内防止重复执行
+const throttleLoadNextPage = throttle(300, () => {
+    loadNextPage()
+})
+
+// 供父组件中滚动监听调用
+const onScroll = (e) => {
+    if (e.scrollHeight - e.scrollTop - e.clientHeight <= correction) {
+        throttleLoadNextPage()
     }
-    // 从重复数据中把当前条目删掉
-    chooseId.value = ''
 }
 
-
-
-readChromeBookmarks()
-
+defineExpose({ onScroll })
 </script>
 <script>
 export default {

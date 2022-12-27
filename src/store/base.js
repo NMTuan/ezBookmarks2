@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-20 16:42:40
- * @LastEditTime: 2022-12-26 14:38:22
+ * @LastEditTime: 2022-12-27 14:00:51
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\store\base.js
  */
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { flatTree } from '../utils'
+import { flatTree, findDuplicate } from '../utils'
 
 export const useBaseStore = defineStore('baseStore', () => {
     // const count = ref(0)
@@ -56,6 +56,9 @@ export const useBaseStore = defineStore('baseStore', () => {
      */
     const bookmarksFlat = ref([])
 
+    // 重复数据
+    const bookmarksDuplicate = ref([])
+
     // 获取浏览器书签
     const fetchChromeBookmarks = () => {
         loading.value = true
@@ -63,6 +66,7 @@ export const useBaseStore = defineStore('baseStore', () => {
             bookmarksTree.value = res
             const flatData = flatTree(res)
             bookmarksFlat.value = flatData
+            bookmarksDuplicate.value = findDuplicate(flatData)
             await handleVisits(flatData)
             handleSort()
             loading.value = false
@@ -107,6 +111,7 @@ export const useBaseStore = defineStore('baseStore', () => {
     return {
         loading,
         bookmarksTree,
-        bookmarksFlat
+        bookmarksFlat,
+        bookmarksDuplicate
     }
 })
