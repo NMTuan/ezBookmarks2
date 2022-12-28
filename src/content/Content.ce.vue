@@ -2,23 +2,25 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 17:17:10
- * @LastEditTime: 2022-12-12 17:01:15
+ * @LastEditTime: 2022-12-28 13:37:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content\Content.ce.vue
 -->
 <template>
-    <iframe v-if="src" class="
-    fixed inset-0
-    w-full h-full
-    backdrop-blur-sm
-    " style="z-index:9999" :src="src" frameborder="0">
+    <iframe
+        v-if="src"
+        class="fixed inset-0 w-full h-full backdrop-blur-sm"
+        style="z-index: 9999"
+        :src="src"
+        frameborder="0"
+    >
     </iframe>
 </template>
 <script setup>
 import { ref } from 'vue'
 const src = ref('')
-const activeCommand = ref('')   // 记录一下当前执行的命令
+const activeCommand = ref('') // 记录一下当前执行的命令
 
 // document.querySelector('html').style.overflow = 'hidden'
 // document.body.style.overflow = 'hidden'
@@ -29,20 +31,24 @@ const handleCommand = (command = '') => {
         return
     }
     if (src.value === '') {
-        // iframe 没有 src， 则打开 command 对应的地址， 显示 iframe 
+        // iframe 没有 src， 则打开 command 对应的地址， 显示 iframe
         // src.value = chrome.runtime.getURL(`pages/dialog.html#/${command}`)
         src.value = chrome.runtime.getURL(`pages/${command}.html`)
         activeCommand.value = command
+        document.body.style.overflow = 'hidden'
+        document.body.style.paddingRight = '17px'
     } else if (activeCommand.value === command) {
         // iframe 有 src 并且 当前 command 与 已激活的 command 相同，则清除数据关闭 iframe
         src.value = ''
         activeCommand.value = ''
+        document.body.style.overflow = ''
+        document.body.style.paddingRight = ''
     }
 }
 
 // 消息处理
 const handleMessage = ({ type = '', action = '', payload = {} }) => {
-    console.log('[content:message]', type, action, payload);
+    console.log('[content:message]', type, action, payload)
     if (type === 'command') {
         handleCommand(action)
     }
@@ -52,10 +58,7 @@ const handleMessage = ({ type = '', action = '', payload = {} }) => {
 chrome.runtime.onMessage.addListener((message) => {
     handleMessage(message)
 })
-
 </script>
 <style>
-@unocss-placeholder
+@unocss-placeholder;
 </style>
-
-
