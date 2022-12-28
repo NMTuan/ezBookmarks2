@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 14:09:25
- * @LastEditTime: 2022-12-28 14:31:08
+ * @LastEditTime: 2022-12-28 14:53:48
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\search\App.vue
@@ -128,7 +128,7 @@ const handleKey = (e) => {
     }
     if (e.key === 'ArrowDown') {
         e.preventDefault()
-        if (activeIndex.value < queryData.value.length) {
+        if (activeIndex.value < queryData.value.length - 1) {
             activeIndex.value++
             keepActiveCanBeSee()
         }

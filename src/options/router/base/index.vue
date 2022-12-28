@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-26 16:34:13
+ * @LastEditTime: 2022-12-28 14:53:34
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -129,7 +129,7 @@ const handleKey = (e) => {
     }
     if (e.key === 'ArrowDown') {
         e.preventDefault()
-        if (activeIndex.value < queryData.value.length) {
+        if (activeIndex.value < queryData.value.length - 1) {
             activeIndex.value++
             keepActiveCanBeSee()
         }
