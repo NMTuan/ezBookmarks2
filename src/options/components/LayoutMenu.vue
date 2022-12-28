@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 09:34:10
- * @LastEditTime: 2022-12-19 16:27:35
+ * @LastEditTime: 2022-12-28 16:05:51
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\LayoutMenu.vue
@@ -36,8 +36,6 @@
                 </router-link>
             </template>
         </template>
-
-        <p v-for="i in 100">{{ i }}</p>
     </div>
 </template>
 <script setup>
