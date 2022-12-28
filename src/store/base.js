@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-20 16:42:40
- * @LastEditTime: 2022-12-27 14:00:51
+ * @LastEditTime: 2022-12-28 10:23:54
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\store\base.js
@@ -107,6 +107,12 @@ export const useBaseStore = defineStore('baseStore', () => {
     }
 
     fetchChromeBookmarks()
+
+    chrome.bookmarks.onChanged.addListener(fetchChromeBookmarks)
+    chrome.bookmarks.onCreated.addListener(fetchChromeBookmarks)
+    chrome.bookmarks.onMoved.addListener(fetchChromeBookmarks)
+    chrome.bookmarks.onRemoved.addListener(fetchChromeBookmarks)
+    chrome.history.onVisited.addListener(fetchChromeBookmarks)
 
     return {
         loading,
