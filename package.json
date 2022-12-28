@@ -29,6 +29,5 @@
         "throttle-debounce": "^5.0.0",
         "unocss": "^0.47.4",
         "vite": "^3.2.3"
-    },
-    "default_locale": "en"
+    }
 }

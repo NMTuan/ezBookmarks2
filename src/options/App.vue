@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-27 11:01:54
+ * @LastEditTime: 2022-12-28 16:25:05
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\App.vue
@@ -69,7 +69,6 @@ import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
 import { useRoute } from 'vue-router'
 const route = useRoute()
-console.log('[i18n]', chrome.i18n.getMessage('ext_name'))
 
 const mainScroll = ref()
 const mainView = ref()
@@ -122,6 +121,9 @@ onMounted(() => {
         }
     })
 })
+
+const pageTitle = chrome.i18n.getMessage('ext_name')
+document.querySelector('title').innerText = pageTitle
 
 provide('mainScrollTop', mainScrollTop)
 provide('mainScroll', mainScroll)

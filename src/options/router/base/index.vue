@@ -22,11 +22,10 @@
                 class="flex item-center justify-between text-cool-gray-400 px-3 py-3 text-sm"
             >
                 <div class="">
-                    共{{ q ? '找到' : '' }} {{ queryData.length }} 个书签：
+                    {{ q ? '找到' : '' }} {{ queryData.length }} 个书签：
                 </div>
                 <div class="flex items-center">
                     Ctrl+Enter search in
-
                     <base-index-search-engine
                         ref="searchEngine"
                     ></base-index-search-engine>
@@ -59,6 +58,7 @@ import {
     watch
 } from 'vue'
 import { throttle } from 'throttle-debounce'
+import { getI18n } from '../../../utils'
 import { useBaseStore } from '@/store/base'
 import BaseIndexListItem from '@/options/components/BaseIndexListItem.vue'
 import BaseIndexSearchEngine from '../../components/BaseIndexSearchEngine.vue'

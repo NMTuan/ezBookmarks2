@@ -4,5 +4,23 @@
     },
     "ext_description": {
         "message": "Pressure free browser bookmark management"
+    },
+    "menu_index": {
+        "message": "ezBookmarks"
+    },
+    "menu_index_index": {
+        "message": "intro"
+    },
+    "menu_base": {
+        "message": "base"
+    },
+    "menu_base_index": {
+        "message": "list"
+    },
+    "menu_base_duplicate": {
+        "message": "duplicate"
+    },
+    "menu_base_random": {
+        "message": "random"
     }
 }

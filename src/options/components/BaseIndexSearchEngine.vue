@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-26 15:23:52
- * @LastEditTime: 2022-12-27 10:53:27
+ * @LastEditTime: 2022-12-28 16:46:35
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseIndexSearchEngine.vue
@@ -77,6 +77,7 @@
 </template>
 <script setup>
 import { ref, defineExpose } from 'vue'
+import { getI18n } from '../../utils'
 import CommonDialog from './commonDialog.vue'
 
 const showDialog = ref(false)
@@ -151,6 +152,9 @@ const handleSubmit = () => {
 }
 
 fetchData()
+
+const x = chrome.i18n.getMessage('menu_base_index_search_in')
+console.log('x', x)
 
 defineExpose({ search })
 </script>

@@ -5,6 +5,21 @@
     "ext_description": {
         "message": "无压的浏览器书签管理插件"
     },
+    "word_search": {
+        "message": "搜索"
+    },
+    "word_keyword": {
+        "message": "关键字"
+    },
+    "word_find": {
+        "message": "找到"
+    },
+    "word_unit": {
+        "message": "个"
+    },
+    "word_bookmark": {
+        "message": "书签"
+    },
     "menu_index": {
         "message": "简单书签"
     },
