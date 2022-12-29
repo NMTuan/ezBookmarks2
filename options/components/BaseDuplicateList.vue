@@ -66,7 +66,7 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import { getFaviconUrl, getI18n } from '../../utils'
+import { getFaviconUrl, getI18n } from '/utils'
 import BaseDuplicateItem from './BaseDuplicateItem.vue'
 
 const props = defineProps({

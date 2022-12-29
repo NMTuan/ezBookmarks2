@@ -9,7 +9,7 @@
  */
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { flatTree, findDuplicate } from '../utils'
+import { flatTree, findDuplicate } from '/utils'
 
 export const useBaseStore = defineStore('baseStore', () => {
     // const count = ref(0)

@@ -14,7 +14,7 @@
     </div>
 </template>
 <script setup>
-import { inject, ref, onMounted, defineExpose } from 'vue'
+import { inject, ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 const rows = ref([])
 const total_rows = ref(0)

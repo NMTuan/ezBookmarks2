@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 14:09:25
- * @LastEditTime: 2022-12-29 14:26:33
+ * @LastEditTime: 2022-12-29 15:47:22
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezBookmarks2\src\search\App.vue
+ * @FilePath: \ezBookmarks2\pages\search\App.vue
 -->
 <template>
     <simplebar class="simplebar h-full" ref="mainScroll" @click="closeDialog">
@@ -60,12 +60,12 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { throttle } from 'throttle-debounce'
-import { useBaseStore } from '@/store/base'
+import { useBaseStore } from '/store/base'
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
-import { getI18n } from '../utils'
-import BaseIndexListItem from '@/options/components/BaseIndexListItem.vue'
-import BaseIndexSearchEngine from '@/options/components/BaseIndexSearchEngine.vue'
+import { getI18n } from '/utils'
+import BaseIndexListItem from '/options/components/BaseIndexListItem.vue'
+import BaseIndexSearchEngine from '/options/components/BaseIndexSearchEngine.vue'
 
 const correction = 100 // 修正值，滚动到距离边缘多少px时触发
 const baseStore = useBaseStore()

@@ -13,7 +13,7 @@
     </router-view>
 </template>
 <script setup>
-import { ref, defineExpose } from 'vue'
+import { ref } from 'vue'
 const view = ref(null)
 defineExpose({ view })
 </script>

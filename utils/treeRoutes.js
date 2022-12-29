@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 15:10:52
- * @LastEditTime: 2022-12-19 16:39:20
+ * @LastEditTime: 2022-12-29 15:12:45
  * @LastEditors: NMTuan
  * @Description:
- * @FilePath: \ezBookmarks2\src\utils\treeRoutes.js
+ * @FilePath: \ezBookmarks2\utils\treeRoutes.js
  */
-import { getI18n } from '../utils'
+import { getI18n } from '/utils'
 
-const files = import.meta.glob('@/options/router/**/*.vue', {
+const files = import.meta.glob('/options/router/**/*.vue', {
     eager: true,
     import: 'default'
 })

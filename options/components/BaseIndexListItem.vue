@@ -85,8 +85,8 @@
     </div>
 </template>
 <script setup>
-import { ref, defineExpose } from 'vue'
-import { getFaviconUrl, formatTimestamp, getI18n } from '../../utils'
+import { ref } from 'vue'
+import { getFaviconUrl, formatTimestamp, getI18n } from '/utils'
 
 const props = defineProps({
     item: {

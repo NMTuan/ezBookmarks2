@@ -33,9 +33,9 @@
 <script setup>
 import { ref } from 'vue'
 import { throttle } from 'throttle-debounce'
-import { useBaseStore } from '@/store/base'
+import { useBaseStore } from '/store/base'
 import BaseDuplicateList from '../../components/BaseDuplicateList.vue'
-import { getI18n } from '../../../utils'
+import { getI18n } from '/utils'
 
 const baseStore = useBaseStore()
 

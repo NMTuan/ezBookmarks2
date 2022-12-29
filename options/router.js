@@ -8,7 +8,7 @@
  * @FilePath: \ezBookmarks2\src\options\router.js
  */
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { treeRoutes } from '../utils'
+import { treeRoutes } from '/utils'
 // console.log(treeRoutes)
 
 const router = createRouter({

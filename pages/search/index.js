@@ -2,17 +2,18 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 14:09:20
- * @LastEditTime: 2022-12-28 14:16:03
+ * @LastEditTime: 2022-12-29 14:59:41
  * @LastEditors: NMTuan
  * @Description:
- * @FilePath: \ezBookmarks2\src\search\search.js
+ * @FilePath: \ezBookmarks2\pages\search\index.js
  */
 
 import { createApp } from 'vue'
 import App from './App.vue'
 import 'uno.css'
 import '@unocss/reset/tailwind.css'
-import pinia from '@/options/pinia'
+import pinia from '/utils/usePinia'
+
 
 const app = createApp(App)
 app.use(pinia)

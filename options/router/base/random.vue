@@ -34,7 +34,7 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import { flatTree, getFaviconUrl, formatTimestamp } from '../../../utils'
+import { flatTree, getFaviconUrl, formatTimestamp } from '/utils'
 
 const loading = ref(false)
 const data = ref([])

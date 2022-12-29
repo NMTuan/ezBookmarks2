@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 10:18:29
- * @LastEditTime: 2022-12-29 11:14:23
+ * @LastEditTime: 2022-12-29 15:44:50
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\vite.config.js
@@ -44,12 +44,12 @@ export default defineConfig({
         crx({ manifest }),
         Unocss({
             mode: 'shadow-dom',
-            include: ['src/content/*'],
+            include: ['content-scripts/*'],
             presets,
             transformers
         }),
         Unocss({
-            include: ['src/options/**/*', 'src/popup/*','src/search/*'],
+            include: ['options/**/*', 'pages/**/*'],
             presets,
             transformers
         })

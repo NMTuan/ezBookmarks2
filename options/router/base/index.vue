@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-29 10:19:51
+ * @LastEditTime: 2022-12-29 15:26:26
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
+ * @FilePath: \ezBookmarks2\options\router\base\index.vue
 -->
 <template>
     <div class="relative">
@@ -49,19 +49,11 @@
     </div>
 </template>
 <script setup>
-import {
-    ref,
-    computed,
-    inject,
-    defineExpose,
-    onMounted,
-    onBeforeUnmount,
-    watch
-} from 'vue'
+import { ref, computed, inject, onMounted, onBeforeUnmount, watch } from 'vue'
 import { throttle } from 'throttle-debounce'
-import { getI18n } from '../../../utils'
-import { useBaseStore } from '@/store/base'
-import BaseIndexListItem from '@/options/components/BaseIndexListItem.vue'
+import { getI18n } from '/utils'
+import { useBaseStore } from '/store/base'
+import BaseIndexListItem from '/options/components/BaseIndexListItem.vue'
 import BaseIndexSearchEngine from '../../components/BaseIndexSearchEngine.vue'
 
 const correction = 100 // 修正值，滚动到距离边缘多少px时触发

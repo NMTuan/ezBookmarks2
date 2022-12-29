@@ -39,7 +39,7 @@
     </div>
 </template>
 <script setup>
-import { treeRoutes } from '../../utils'
+import { treeRoutes } from '/utils'
 </script>
 <style scoped lang="scss">
 .menu {

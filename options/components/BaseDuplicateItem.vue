@@ -42,7 +42,7 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import { formatTimestamp } from '../../utils'
+import { formatTimestamp } from '/utils'
 
 const props = defineProps({
     item: {

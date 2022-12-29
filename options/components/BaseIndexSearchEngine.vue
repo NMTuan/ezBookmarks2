@@ -76,8 +76,8 @@
     </div>
 </template>
 <script setup>
-import { ref, defineExpose } from 'vue'
-import { getI18n } from '../../utils'
+import { ref } from 'vue'
+import { getI18n } from '/utils'
 import CommonDialog from './commonDialog.vue'
 
 const showDialog = ref(false)
