@@ -2,16 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-13 16:25:07
- * @LastEditTime: 2022-12-19 16:39:00
+ * @LastEditTime: 2022-12-29 16:44:44
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezBookmarks2\src\options\router\index.vue
+ * @FilePath: \ezBookmarks2\options\router\index.vue
 -->
 <template>
-    <div>
-        index
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
 </template>
 <script setup>
 import { inject, ref, onMounted } from 'vue'
