@@ -16,6 +16,8 @@
     "word_last_visit_date": { "message": "last visit at" },
     "word_folder": { "message": "folder" },
 
+    "command_search": { "message": "search bookmark" },
+
     "menu_index": { "message": "ezBookmarks" },
     "menu_index_index": { "message": "intro" },
     "menu_base": { "message": "base" },

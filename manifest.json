@@ -12,7 +12,9 @@
         "48": "src/assets/icon48.png",
         "128": "src/assets/icon128.png"
     },
-    "action": { "default_popup": "popup.html" },
+    "action": {
+        "default_title": "__MSG_ext_name__"
+    },
     "options_page": "options.html",
     "background": {
         "service_worker": "src/background.js",
@@ -39,7 +41,7 @@
             "suggested_key": {
                 "default": "Alt+F"
             },
-            "description": "检索书签"
+            "description": "__MSG_command_search__"
         }
     }
 }

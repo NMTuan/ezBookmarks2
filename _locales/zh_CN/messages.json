@@ -14,6 +14,8 @@
     "word_last_visit_date": { "message": "最后访问日期" },
     "word_folder": { "message": "文件夹" },
 
+    "command_search": { "message": "打开书签检索对话框" },
+
     "menu_index": { "message": "简单书签" },
     "menu_index_index": { "message": "介绍" },
     "menu_base": { "message": "base" },

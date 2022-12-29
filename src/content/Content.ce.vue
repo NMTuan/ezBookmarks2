@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 17:17:10
- * @LastEditTime: 2022-12-28 13:37:14
+ * @LastEditTime: 2022-12-29 14:25:00
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\content\Content.ce.vue
@@ -32,13 +32,21 @@ const handleCommand = (command = '') => {
     }
     if (src.value === '') {
         // iframe 没有 src， 则打开 command 对应的地址， 显示 iframe
-        // src.value = chrome.runtime.getURL(`pages/dialog.html#/${command}`)
-        src.value = chrome.runtime.getURL(`pages/${command}.html`)
         activeCommand.value = command
-        document.body.style.overflow = 'hidden'
-        document.body.style.paddingRight = '17px'
+        handleDialog('open', `pages/${command}.html`)
     } else if (activeCommand.value === command) {
         // iframe 有 src 并且 当前 command 与 已激活的 command 相同，则清除数据关闭 iframe
+        handleDialog('close')
+    }
+}
+
+const handleDialog = (action, url) => {
+    if (action === 'open' && url) {
+        src.value = chrome.runtime.getURL(url)
+        document.body.style.overflow = 'hidden'
+        document.body.style.paddingRight = '17px'
+    }
+    if (action === 'close') {
         src.value = ''
         activeCommand.value = ''
         document.body.style.overflow = ''
@@ -48,9 +56,12 @@ const handleCommand = (command = '') => {
 
 // 消息处理
 const handleMessage = ({ type = '', action = '', payload = {} }) => {
-    console.log('[content:message]', type, action, payload)
+    // console.log('[content:message]', type, action, payload)
     if (type === 'command') {
         handleCommand(action)
+    }
+    if (type === 'dialog') {
+        handleDialog(action)
     }
 }
 

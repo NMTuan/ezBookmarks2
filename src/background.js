@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-05 11:55:03
- * @LastEditTime: 2022-12-14 15:02:26
+ * @LastEditTime: 2022-12-29 14:26:44
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezBookmarks2\src\background.js
@@ -21,8 +21,12 @@ chrome.commands.onCommand.addListener((command) => {
     getCurrentTab().then((tab) => {
         chrome.tabs.sendMessage(tab.id, {
             type: 'command',
-            //   action: storageData.logged ? command : "login"
             action: command
         })
     })
 })
+
+// 点击扩展图标
+chrome.action.onClicked.addListener(() => {
+  chrome.runtime.openOptionsPage();
+});

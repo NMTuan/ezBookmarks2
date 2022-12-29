@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 14:09:25
- * @LastEditTime: 2022-12-29 10:31:08
+ * @LastEditTime: 2022-12-29 14:26:33
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\search\App.vue
 -->
 <template>
-    <simplebar class="simplebar h-full" ref="mainScroll">
+    <simplebar class="simplebar h-full" ref="mainScroll" @click="closeDialog">
         <div
             class="bg-cool-gray-50 mx-auto my-12vh overflow-hidden rounded p-4 w-90%"
             sm="w-80%"
@@ -178,6 +178,15 @@ const keepActiveCanBeSee = () => {
 const mainScrollTop = (value = 0) => {
     mainScroll.value.scrollElement.scrollTop = value
 }
+
+const closeDialog = async () => {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+    chrome.tabs.sendMessage(tab.id, {
+        type: 'dialog',
+        action: 'close'
+    })
+}
+
 onMounted(() => {
     input.value.focus()
     window.addEventListener('keydown', handleKey)
