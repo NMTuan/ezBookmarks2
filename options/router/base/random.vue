@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-20 08:16:38
- * @LastEditTime: 2022-12-20 11:29:44
+ * @LastEditTime: 2022-12-29 16:01:34
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezBookmarks2\src\options\router\base\random.vue
+ * @FilePath: \ezBookmarks2\options\router\base\random.vue
 -->
 <template>
     <div>
@@ -63,6 +63,7 @@ readChromeBookmarks()
 </script>
 <script>
 export default {
-    icon: 'i-ri-shuffle-line'
+    icon: 'i-ri-shuffle-line',
+    hidden: true
 }
 </script>

@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-26 15:23:52
- * @LastEditTime: 2022-12-29 10:10:26
+ * @LastEditTime: 2022-12-29 16:23:25
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezBookmarks2\src\options\components\BaseIndexSearchEngine.vue
+ * @FilePath: \ezBookmarks2\options\components\BaseIndexSearchEngine.vue
 -->
 <template>
     <div>
@@ -152,9 +152,6 @@ const handleSubmit = () => {
 }
 
 fetchData()
-
-const x = chrome.i18n.getMessage('menu_base_index_search_in')
-console.log('x', x)
 
 defineExpose({ search })
 </script>

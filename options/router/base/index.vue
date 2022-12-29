@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-29 15:26:26
+ * @LastEditTime: 2022-12-29 16:23:49
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\options\router\base\index.vue
@@ -111,7 +111,7 @@ const handleMouseenter = (index) => {
 
 // 处理按键事件
 const handleKey = (e) => {
-    console.log('key', e.key, e)
+    // console.log('key', e.key, e)
 
     if (e.key === 'ArrowUp') {
         e.preventDefault()

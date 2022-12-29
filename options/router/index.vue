@@ -33,7 +33,6 @@ onMounted(() => {
         include_docs: true
     }).then((res) => {
         // { offset:Number, rows:Array, total_rows:Number}
-        console.log('res', res)
         rows.value = res.rows
     })
 })
