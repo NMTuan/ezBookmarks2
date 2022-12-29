@@ -1,26 +1,29 @@
 {
-    "ext_name": {
-        "message": "ezBookmarks v2"
-    },
+    "ext_name": { "message": "ezBookmarks v2" },
     "ext_description": {
         "message": "Pressure free browser bookmark management"
     },
-    "menu_index": {
-        "message": "ezBookmarks"
-    },
-    "menu_index_index": {
-        "message": "intro"
-    },
-    "menu_base": {
-        "message": "base"
-    },
-    "menu_base_index": {
-        "message": "list"
-    },
-    "menu_base_duplicate": {
-        "message": "duplicate"
-    },
-    "menu_base_random": {
-        "message": "random"
-    }
+
+    "word_search": { "message": "search" },
+    "word_keyword": { "message": "keyword" },
+    "word_find": { "message": "find" },
+    "word_unit": { "message": " " },
+    "word_bookmark": { "message": "bookmarks" },
+    "word_duplicate": { "message": "duplicate" },
+    "word_save": { "message": "save" },
+    "word_cancel": { "message": "cancel" },
+    "word_created_date": { "message": "create at" },
+    "word_last_visit_date": { "message": "last visit at" },
+    "word_folder": { "message": "folder" },
+
+    "menu_index": { "message": "ezBookmarks" },
+    "menu_index_index": { "message": "intro" },
+    "menu_base": { "message": "base" },
+    "menu_base_index": { "message": "list" },
+    "menu_base_duplicate": { "message": "duplicate" },
+    "menu_base_random": { "message": "random" },
+
+    "dialog_search_engine_title": { "message": "change default search engine" },
+    "options_duplicate_save_choose_item": { "message": "save the choose" },
+    "options_duplicate_remove_all": { "message": "remove all" }
 }

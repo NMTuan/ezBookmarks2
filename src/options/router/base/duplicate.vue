@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 13:20:24
- * @LastEditTime: 2022-12-27 16:51:29
+ * @LastEditTime: 2022-12-29 10:43:17
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\duplicate.vue
@@ -12,7 +12,11 @@
         <div
             class="flex item-center justify-between text-cool-gray-400 px-3 py-3 text-sm"
         >
-            找到 {{ baseStore.bookmarksDuplicate.length }} 条重复书签
+            {{ getI18n('word_find') }}
+            {{ baseStore.bookmarksDuplicate.length }}
+            {{ getI18n('word_unit') }}
+            {{ getI18n('word_duplicate') }}
+            {{ getI18n('word_bookmark') }}
         </div>
 
         <div v-if="!baseStore.loading">
@@ -31,6 +35,7 @@ import { ref } from 'vue'
 import { throttle } from 'throttle-debounce'
 import { useBaseStore } from '@/store/base'
 import BaseDuplicateList from '../../components/BaseDuplicateList.vue'
+import { getI18n } from '../../../utils'
 
 const baseStore = useBaseStore()
 

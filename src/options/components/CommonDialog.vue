@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-26 15:57:51
- * @LastEditTime: 2022-12-27 10:12:09
+ * @LastEditTime: 2022-12-29 10:39:33
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\CommonDialog.vue
@@ -23,7 +23,7 @@
                     @click.stop=""
                 >
                     <div
-                        class="flex items-center justify-between text-cool-gray-800"
+                        class="flex items-center justify-between text-cool-gray-800 uppercase"
                     >
                         <div>{{ title }}</div>
                         <div

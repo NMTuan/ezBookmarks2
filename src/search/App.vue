@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 14:09:25
- * @LastEditTime: 2022-12-28 14:53:48
+ * @LastEditTime: 2022-12-29 10:31:08
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\search\App.vue
@@ -29,7 +29,9 @@
                     class="flex item-center justify-between text-cool-gray-400 px-3 py-3 text-sm"
                 >
                     <div class="">
-                        共{{ q ? '找到' : '' }} {{ queryData.length }} 个书签：
+                        {{ q ? getI18n('word_find') : '' }}
+                        {{ queryData.length }} {{ getI18n('word_unit')
+                        }}{{ getI18n('word_bookmark') }}
                     </div>
                     <div class="flex items-center">
                         Ctrl+Enter search in
@@ -61,6 +63,7 @@ import { throttle } from 'throttle-debounce'
 import { useBaseStore } from '@/store/base'
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
+import { getI18n } from '../utils'
 import BaseIndexListItem from '@/options/components/BaseIndexListItem.vue'
 import BaseIndexSearchEngine from '@/options/components/BaseIndexSearchEngine.vue'
 

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 11:03:07
- * @LastEditTime: 2022-12-28 14:53:34
+ * @LastEditTime: 2022-12-29 10:19:51
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\router\base\index.vue
@@ -22,7 +22,8 @@
                 class="flex item-center justify-between text-cool-gray-400 px-3 py-3 text-sm"
             >
                 <div class="">
-                    {{ q ? '找到' : '' }} {{ queryData.length }} 个书签：
+                    {{ q ? getI18n('word_find') : '' }} {{ queryData.length }}
+                    {{ getI18n('word_unit') }}{{ getI18n('word_bookmark') }}
                 </div>
                 <div class="flex items-center">
                     Ctrl+Enter search in

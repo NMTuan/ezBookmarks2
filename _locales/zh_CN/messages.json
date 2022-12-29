@@ -1,41 +1,27 @@
 {
-    "ext_name": {
-        "message": "简单书签2"
-    },
-    "ext_description": {
-        "message": "无压的浏览器书签管理插件"
-    },
-    "word_search": {
-        "message": "搜索"
-    },
-    "word_keyword": {
-        "message": "关键字"
-    },
-    "word_find": {
-        "message": "找到"
-    },
-    "word_unit": {
-        "message": "个"
-    },
-    "word_bookmark": {
-        "message": "书签"
-    },
-    "menu_index": {
-        "message": "简单书签"
-    },
-    "menu_index_index": {
-        "message": "介绍"
-    },
-    "menu_base": {
-        "message": "base"
-    },
-    "menu_base_index": {
-        "message": "书签列表"
-    },
-    "menu_base_duplicate": {
-        "message": "重复书签"
-    },
-    "menu_base_random": {
-        "message": "随机漫步"
-    }
+    "ext_name": { "message": "简单书签2" },
+    "ext_description": { "message": "无压的浏览器书签管理插件" },
+
+    "word_search": { "message": "搜索" },
+    "word_keyword": { "message": "关键字" },
+    "word_find": { "message": "找到" },
+    "word_unit": { "message": "个" },
+    "word_bookmark": { "message": "书签" },
+    "word_duplicate": { "message": "重复" },
+    "word_save": { "message": "保存" },
+    "word_cancel": { "message": "取消" },
+    "word_created_date": { "message": "创建日期" },
+    "word_last_visit_date": { "message": "最后访问日期" },
+    "word_folder": { "message": "文件夹" },
+
+    "menu_index": { "message": "简单书签" },
+    "menu_index_index": { "message": "介绍" },
+    "menu_base": { "message": "base" },
+    "menu_base_index": { "message": "书签列表" },
+    "menu_base_duplicate": { "message": "重复书签" },
+    "menu_base_random": { "message": "随机漫步" },
+
+    "dialog_search_engine_title": { "message": "修改默认搜索引擎" },
+    "options_duplicate_save_choose_item": { "message": "保留选中项" },
+    "options_duplicate_remove_all": { "message": "都不保留" }
 }

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-27 14:42:54
- * @LastEditTime: 2022-12-27 16:53:10
+ * @LastEditTime: 2022-12-29 10:35:41
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseDuplicateList.vue
@@ -50,14 +50,14 @@
                     }"
                     @click="saveSelected"
                 >
-                    保留选中项
+                    {{ getI18n('options_duplicate_save_choose_item') }}
                 </button>
                 <button
                     class="px-4 py-2 ml-2 transition-all"
                     hover="bg-red-400 text-white"
                     @click="removeAll"
                 >
-                    都不保留
+                    {{ getI18n('options_duplicate_remove_all') }}
                 </button>
             </div>
         </div>
@@ -66,7 +66,7 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import { getFaviconUrl } from '../../utils'
+import { getFaviconUrl, getI18n } from '../../utils'
 import BaseDuplicateItem from './BaseDuplicateItem.vue'
 
 const props = defineProps({

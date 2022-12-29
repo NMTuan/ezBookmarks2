@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-26 15:23:52
- * @LastEditTime: 2022-12-28 16:46:35
+ * @LastEditTime: 2022-12-29 10:10:26
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseIndexSearchEngine.vue
@@ -22,7 +22,7 @@
         </div>
         <common-dialog
             v-model:show="showDialog"
-            title="修改默认搜索引擎"
+            :title="getI18n('dialog_search_engine_title')"
             :before-close="handleClose"
         >
             <div v-for="(item, index) in engineList">
@@ -62,14 +62,14 @@
                     hover="bg-cool-gray-200"
                     @click="handleClose"
                 >
-                    取消
+                    {{ getI18n('word_cancel') }}
                 </button>
                 <button
                     class="px-4 py-1 ml-2 bg-blue-400 text-white"
                     hover="bg-blue-500"
                     @click="handleSubmit"
                 >
-                    保存
+                    {{ getI18n('word_save') }}
                 </button>
             </div>
         </common-dialog>

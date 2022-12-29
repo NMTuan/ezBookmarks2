@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 13:44:47
- * @LastEditTime: 2022-12-26 12:59:28
+ * @LastEditTime: 2022-12-29 10:29:41
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\src\options\components\BaseIndexListItem.vue
 -->
 <template>
-    <div ref="el" class="flex items-end p-3 border-b">
+    <div ref="el" class="flex items-end p-3 border-b group">
         <div class="flex-1 overflow-hidden">
             <div class="flex items-center">
                 <img
@@ -26,7 +26,7 @@
                     >
                     </a>
                     <div
-                        class="i-ri-share-box-line flex-shrink-0 ml-1 text-sm text-cool-gray-300 hidden"
+                        class="i-ri-share-box-line flex-shrink-0 ml-1 text-sm text-cool-gray-400 hidden"
                         group-hover="block"
                     ></div>
                 </div>
@@ -36,6 +36,7 @@
                 <div
                     v-if="item.parentTitles?.length > 0"
                     class="flex-shrink-0 flex items-center mr-4"
+                    :title="getI18n('word_folder')"
                 >
                     <div class="i-ri-folder-line mr-2"></div>
                     {{ item.parentTitles.join(' - ') }}
@@ -44,9 +45,10 @@
                 <div
                     v-if="item.visits?.length > 0"
                     class="flex-shrink-0 flex items-center mr-4"
+                    :title="getI18n('word_last_visit_date')"
                 >
                     <div class="i-ri-eye-line mr-2"></div>
-                    {{ item.visits.length }} -
+                    <!-- {{ item.visits.length }} - -->
                     {{
                         formatTimestamp(
                             item.visits[item.visits.length - 1].visitTime
@@ -54,7 +56,10 @@
                     }}
                 </div>
                 <!-- 创建时间 -->
-                <div class="flex-shrink-0 flex items-center mr-4">
+                <div
+                    class="flex-shrink-0 flex items-center mr-4"
+                    :title="getI18n('word_created_date')"
+                >
                     <div class="i-ri-add-box-line mr-2"></div>
                     {{ formatTimestamp(item.dateAdded) }}
                 </div>
@@ -71,7 +76,7 @@
             </div>
         </div>
         <div
-            class="items-center text-cool-gray-300"
+            class="items-center text-cool-gray-400"
             :class="{ flex: active, hidden: !active }"
         >
             <!-- ENTER -->
@@ -81,7 +86,7 @@
 </template>
 <script setup>
 import { ref, defineExpose } from 'vue'
-import { getFaviconUrl, formatTimestamp } from '../../utils'
+import { getFaviconUrl, formatTimestamp, getI18n } from '../../utils'
 
 const props = defineProps({
     item: {
