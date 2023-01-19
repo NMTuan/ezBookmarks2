@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-27 14:23:22
- * @LastEditTime: 2023-01-19 14:46:39
+ * @LastEditTime: 2023-01-19 15:57:08
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\options\components\BaseDuplicateItem.vue
@@ -34,27 +34,6 @@
         <BaseDuplicateBox :title="getI18n('options_duplicate_item_dataAdded')">
             {{ formatTimestamp(item.dateAdded) }}
         </BaseDuplicateBox>
-        <BaseDuplicateBox
-            :title="getI18n('options_duplicate_item_lastVisited')"
-        >
-            x
-        </BaseDuplicateBox>
-        <!-- <div class="overflow-hidden">
-            <div class="truncate">{{ item.title }}</div>
-            <div class="flex mt-2 text-cool-gray-400">
-                <div
-                    v-if="item.parentTitles?.length > 0"
-                    class="flex-shrink-0 flex items-center mr-4"
-                >
-                    <div class="i-ri-folder-line mr-2"></div>
-                    {{ item.parentTitles.join(' - ') }}
-                </div>
-                <div class="flex-shrink-0 flex items-center mr-4">
-                    <div class="i-ri-add-box-line mr-2"></div>
-                    {{ formatTimestamp(item.dateAdded) }}
-                </div>
-            </div>
-        </div> -->
     </div>
 </template>
 <script setup>
