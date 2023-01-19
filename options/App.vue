@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 11:07:04
- * @LastEditTime: 2022-12-28 16:25:05
+ * @LastEditTime: 2023-01-18 15:35:21
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezBookmarks2\src\options\App.vue
+ * @FilePath: \ezBookmarks2\options\App.vue
 -->
 <template>
     <div class="h-full flex">
@@ -52,7 +52,7 @@
                         ></div>
                     </div>
                 </div>
-                <div class="w-85% max-w-6xl mx-auto">
+                <div class="main w-85% max-w-6xl mx-auto mt-6 mb-32">
                     <router-view v-slot="{ Component }">
                         <component :is="Component" ref="mainView"></component>
                     </router-view>
@@ -149,6 +149,16 @@ body,
         &:before {
             @apply bg-black/50;
         }
+    }
+}
+
+// 统一主体区域样式
+.main {
+    h1 {
+        @apply text-2xl font-bold mb-2;
+    }
+    h2 {
+        @apply text-lg font-bold mt-6 mb-2;
     }
 }
 </style>

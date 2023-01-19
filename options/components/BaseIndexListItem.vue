@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 13:44:47
- * @LastEditTime: 2022-12-29 10:29:41
+ * @LastEditTime: 2023-01-19 14:36:03
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezBookmarks2\src\options\components\BaseIndexListItem.vue
+ * @FilePath: \ezBookmarks2\options\components\BaseIndexListItem.vue
 -->
 <template>
     <div ref="el" class="flex items-end p-3 border-b group">
@@ -14,7 +14,7 @@
                 <img
                     :src="getFaviconUrl(item.url)"
                     alt=""
-                    class="block w-6 h-6 flex-shrink-0 mr-3"
+                    class="block w-4 h-4 flex-shrink-0 mr-3"
                 />
                 <div class="flex-1 flex items-start overflow-hidden">
                     <a

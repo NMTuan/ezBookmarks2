@@ -24,6 +24,12 @@
     "menu_base_random": { "message": "随机漫步" },
 
     "dialog_search_engine_title": { "message": "修改默认搜索引擎" },
+    "options_duplicate_item_id": { "message": "编号" },
+    "options_duplicate_item_url": { "message": "网址" },
+    "options_duplicate_item_folder": { "message": "文件夹" },
+    "options_duplicate_item_dataAdded": { "message": "创建时间" },
+    "options_duplicate_item_lastVisited": { "message": "最后访问" },
+    "options_duplicate_item_none": { "message": "无" },
     "options_duplicate_save_choose_item": { "message": "保留选中项" },
     "options_duplicate_remove_all": { "message": "都不保留" }
 }

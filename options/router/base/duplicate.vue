@@ -2,23 +2,22 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 13:20:24
- * @LastEditTime: 2022-12-29 10:43:17
+ * @LastEditTime: 2023-01-19 14:40:52
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezBookmarks2\src\options\router\base\duplicate.vue
+ * @FilePath: \ezBookmarks2\options\router\base\duplicate.vue
 -->
 <template>
     <div class="relative">
-        <div
-            class="flex item-center justify-between text-cool-gray-400 px-3 py-3 text-sm"
-        >
-            {{ getI18n('word_find') }}
-            {{ baseStore.bookmarksDuplicate.length }}
-            {{ getI18n('word_unit') }}
-            {{ getI18n('word_duplicate') }}
-            {{ getI18n('word_bookmark') }}
+        <div class="mb-2">
+            <p>
+                {{ getI18n('word_find') }}
+                {{ baseStore.bookmarksDuplicate.length }}
+                {{ getI18n('word_unit') }}
+                {{ getI18n('word_duplicate') }}
+                {{ getI18n('word_bookmark') }}
+            </p>
         </div>
-
         <div v-if="!baseStore.loading">
             <base-duplicate-list
                 v-for="item in baseStore.bookmarksDuplicate.slice(
