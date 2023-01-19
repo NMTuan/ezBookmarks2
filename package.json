@@ -1,0 +1,33 @@
+{
+    "name": "test_crxjs",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "events": "^3.3.0",
+        "pinia": "^2.0.28",
+        "pouchdb-browser": "^7.3.1",
+        "pouchdb-find": "^7.3.1",
+        "simplebar-vue": "^1.8.0-alpha.0",
+        "vue": "^3.2.41",
+        "vue-router": "4"
+    },
+    "devDependencies": {
+        "@crxjs/vite-plugin": "^2.0.0-beta.6",
+        "@iconify-json/icon-park-solid": "^1.1.5",
+        "@iconify-json/ri": "^1.1.4",
+        "@unocss/preset-icons": "^0.47.4",
+        "@unocss/preset-rem-to-px": "^0.47.4",
+        "@unocss/transformer-directives": "^0.47.6",
+        "@vitejs/plugin-vue": "^3.2.0",
+        "sass": "^1.56.2",
+        "throttle-debounce": "^5.0.0",
+        "unocss": "^0.47.4",
+        "vite": "^3.2.3"
+    }
+}

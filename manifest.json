@@ -1,0 +1,47 @@
+{
+    "manifest_version": 3,
+    "name": "__MSG_ext_name__",
+    "version": "1.0.0",
+    "description": "__MSG_ext_description__",
+    "author": "NMTuan",
+    "homepage_url": "https://github.com/NMTuan/ezBookmarks2",
+    "default_locale": "zh_CN",
+    "permissions": ["bookmarks", "favicon", "history", "storage"],
+    "icons": {
+        "16": "assets/icon16.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
+    },
+    "action": {
+        "default_title": "__MSG_ext_name__"
+    },
+    "options_page": "options.html",
+    "background": {
+        "service_worker": "background/index.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "/content-scripts/index.js",
+                "/content-scripts/webcomponents-bundle.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["pages/search.html"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "commands": {
+        "search": {
+            "suggested_key": {
+                "default": "Alt+F"
+            },
+            "description": "__MSG_command_search__"
+        }
+    }
+}

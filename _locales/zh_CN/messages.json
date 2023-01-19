@@ -1,0 +1,55 @@
+{
+    "ext_name": { "message": "简单书签2" },
+    "ext_description": { "message": "无压的浏览器书签管理插件" },
+
+    "word_search": { "message": "搜索" },
+    "word_keyword": { "message": "关键字" },
+    "word_find": { "message": "找到" },
+    "word_unit": { "message": "个" },
+    "word_bookmark": { "message": "书签" },
+    "word_duplicate": { "message": "重复" },
+    "word_save": { "message": "保存" },
+    "word_cancel": { "message": "取消" },
+    "word_created_date": { "message": "创建日期" },
+    "word_last_visit_date": { "message": "最后访问日期" },
+    "word_folder": { "message": "文件夹" },
+
+    "command_search": { "message": "打开书签检索对话框" },
+
+    "menu_index": { "message": "简单书签" },
+    "menu_index_index": { "message": "介绍" },
+    "menu_base": { "message": "base" },
+    "menu_base_index": { "message": "书签列表" },
+    "menu_base_duplicate": { "message": "重复书签" },
+    "menu_base_random": { "message": "随机漫步" },
+
+    "index_intro_1": { "message": "这是一个简约浏览器扩展。" },
+    "index_intro_2": { "message": "探索无压的使用浏览器书签。" },
+    "index_intro_3": {
+        "message": "目前所有数据源于您当前浏览器，没有任何网络请求。"
+    },
+    "index_title2": { "message": "无压搜索书签" },
+    "index_title2_p1": {
+        "message": "在浏览网页的同时，你可以使用 `Alt+F`键快速呼出搜索对话框，检索你的书签。可以使用 `↑/↓`去快速移动高亮的选项，按`Enter`键后会在新标签中打开所选书签。同时，你可以使用`Alt+Enter` 去对应的搜索引擎中搜索你输入的关键字。"
+    },
+    "index_title2_p2": {
+        "message": "如果快捷键无效或想要更换快捷键，请访问这里："
+    },
+    "index_title3": { "message": "重复书签处理" },
+    "index_title3_p1": {
+        "message": "该扩展会对比你所有书签数据，找到并列出那些 url 地址相同的书签，由你去处理它们。"
+    },
+    "index_title3_p2": {
+        "message": "注意：该功能会直接操作你浏览器中的书签，一旦删除无法找回。"
+    },
+
+    "dialog_search_engine_title": { "message": "修改默认搜索引擎" },
+    "options_duplicate_item_id": { "message": "编号" },
+    "options_duplicate_item_url": { "message": "网址" },
+    "options_duplicate_item_folder": { "message": "文件夹" },
+    "options_duplicate_item_dataAdded": { "message": "创建时间" },
+    "options_duplicate_item_lastVisited": { "message": "最后访问" },
+    "options_duplicate_item_none": { "message": "无" },
+    "options_duplicate_save_choose_item": { "message": "保留选中项" },
+    "options_duplicate_remove_all": { "message": "都不保留" }
+}
