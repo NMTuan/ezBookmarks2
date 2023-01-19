@@ -3,7 +3,7 @@
         class="bg-white rounded px-3 py-2 mb-2 text-sm min-h-14 flex items-center justify-between overflow-hidden"
     >
         <div class="truncate">
-            <div class="text-cool-gray-500">{{ title }}</div>
+            <div class="text-cool-gray-500 capitalize">{{ title }}</div>
             <div class="truncate">
                 <slot />
             </div>

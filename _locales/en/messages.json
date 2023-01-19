@@ -25,7 +25,35 @@
     "menu_base_duplicate": { "message": "duplicate" },
     "menu_base_random": { "message": "random" },
 
+    "index_intro_1": { "message": "This is a simple browser extension." },
+    "index_intro_2": {
+        "message": "Explore the use of browser bookmarks without pressure."
+    },
+    "index_intro_3": {
+        "message": "all data comes from your current browser and there are no network requests."
+    },
+    "index_title2": { "message": "No pressure search bookmark" },
+    "index_title2_p1": {
+        "message": "While browsing the web page, you can use the 'Alt+F' key to quickly call out the search dialog box and retrieve your bookmarks. You can use '↑/↓' to quickly move the highlighted option, and press the 'Enter' key to open the selected bookmark in the new label. At the same time, you can use 'Alt+Enter' to search the keywords you enter in the corresponding search engine."
+    },
+    "index_title2_p2": {
+        "message": "If the shortcut key is invalid or you want to replace it, please visit here:"
+    },
+    "index_title3": { "message": "Handle Duplicate bookmark" },
+    "index_title3_p1": {
+        "message": "This extension will compare all your bookmark data, find and list those bookmarks with the same url address, and you will handle them."
+    },
+    "index_title3_p2": {
+        "message": "Note: This function will directly operate the bookmarks in your browser. Once deleted, it cannot be retrieved."
+    },
+
     "dialog_search_engine_title": { "message": "change default search engine" },
+    "options_duplicate_item_id": { "message": "id" },
+    "options_duplicate_item_url": { "message": "url" },
+    "options_duplicate_item_folder": { "message": "folder" },
+    "options_duplicate_item_dataAdded": { "message": "create at" },
+    "options_duplicate_item_lastVisited": { "message": "list visited" },
+    "options_duplicate_item_none": { "message": "无" },
     "options_duplicate_save_choose_item": { "message": "save the choose" },
     "options_duplicate_remove_all": { "message": "remove all" }
 }
