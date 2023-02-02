@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-27 14:42:54
- * @LastEditTime: 2023-01-19 14:39:49
+ * @LastEditTime: 2023-02-02 14:01:28
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\options\components\BaseDuplicateList.vue
@@ -65,9 +65,12 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { useBaseStore } from '../../store/base'
 import { getFaviconUrl, getI18n } from '/utils'
 import BaseDuplicateItem from './BaseDuplicateItem.vue'
 import simplebar from 'simplebar-vue'
+
+const baseStore = useBaseStore()
 
 const props = defineProps({
     item: {
@@ -90,17 +93,16 @@ const saveSelected = async () => {
     if (selectedId.value === '') {
         return
     }
+
     for (let i = 0; i < props.item.data.length; i++) {
         if (props.item.data[i].id !== selectedId.value) {
-            await chrome.bookmarks.remove(props.item.data[i].id)
+            baseStore.removeById(props.item.data[i].id)
         }
     }
 }
 
 const removeAll = async () => {
-    for (let i = 0; i < props.item.data.length; i++) {
-        await chrome.bookmarks.remove(props.item.data[i].id)
-    }
+    baseStore.removeByItems(props.item.data)
 }
 </script>
 <style scoped lang="scss">
