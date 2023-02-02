@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-21 13:44:47
- * @LastEditTime: 2023-01-19 14:36:03
+ * @LastEditTime: 2023-02-02 14:33:04
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\options\components\BaseIndexListItem.vue
@@ -17,14 +17,12 @@
                     class="block w-4 h-4 flex-shrink-0 mr-3"
                 />
                 <div class="flex-1 flex items-start overflow-hidden">
-                    <a
-                        class="truncate"
+                    <div
+                        class="truncate cursor-pointer"
                         hover="underline underline-offset-4"
-                        :href="item.url"
-                        target="_blank"
                         v-html="highlight(item.title)"
-                    >
-                    </a>
+                        @click="handleClick()"
+                    ></div>
                     <div
                         class="i-ri-share-box-line flex-shrink-0 ml-1 text-sm text-cool-gray-400 hidden"
                         group-hover="block"
@@ -105,6 +103,8 @@ const props = defineProps({
     }
 })
 
+const emits = defineEmits(['beforeOpened'])
+
 const el = ref()
 const classNames = 'bg-yellow-200 rounded'
 const highlight = (text) => {
@@ -116,6 +116,12 @@ const highlight = (text) => {
     } else {
         return text
     }
+}
+
+// 点击打开
+const handleClick = () => {
+    emits('beforeOpened')
+    chrome.tabs.create({ url: props.item.url })
 }
 
 defineExpose({ el })

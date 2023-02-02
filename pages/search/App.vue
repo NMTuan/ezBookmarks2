@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-11-22 14:09:25
- * @LastEditTime: 2022-12-29 16:23:55
+ * @LastEditTime: 2023-02-02 14:50:11
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\pages\search\App.vue
@@ -51,6 +51,7 @@
                     class="transition-all"
                     :class="{ 'bg-cool-gray-200': activeIndex === index }"
                     @mouseenter="handleMouseenter(index)"
+                    @beforeOpened="closeDialog"
                     ref="items"
                 ></BaseIndexListItem>
             </div>
@@ -77,6 +78,7 @@ const activeIndex = ref(0)
 const items = ref([])
 const searchEngine = ref('')
 const mainScroll = ref()
+const pressedEsc = ref(false)
 
 // 查询后的数据
 const queryData = computed(() => {
@@ -141,6 +143,16 @@ const handleKey = (e) => {
             chrome.tabs.create({
                 url: queryData.value[activeIndex.value].url
             })
+        }
+    }
+    // 连续按两次 esc 则关闭窗口
+    if (e.key === 'Escape') {
+        if (pressedEsc.value) {
+            closeDialog()
+            pressedEsc.value = false
+        } else {
+            pressedEsc.value = true
+            setTimeout(() => (pressedEsc.value = false), 300)
         }
     }
 }
