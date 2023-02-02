@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-12-19 13:20:24
- * @LastEditTime: 2023-01-19 14:40:52
+ * @LastEditTime: 2023-02-01 16:14:18
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezBookmarks2\options\router\base\duplicate.vue
@@ -25,6 +25,7 @@
                     page * limit
                 )"
                 :item="item"
+                :key="item.url"
             ></base-duplicate-list>
         </div>
     </div>
